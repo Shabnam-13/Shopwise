@@ -1,0 +1,135 @@
+﻿@model FinalProject.Models.ProductInfo
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="form-horizontal">
+        <h4>ProductInfo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-md-10 form-group">
+            <label>Product</label>
+            <select class="form-control" name="ProductId">
+                @foreach (var item in ViewBag.Product)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="saleBanner">
+            <div class="col-md-10 form-group">
+                <label>Choose Sale banner</label><span class="addItem">+</span>
+            </div>
+        </div>
+
+        <div class="colors">
+            <div class="col-md-10 form-group">
+                <label>Choose Color</label>
+                <select class="form-control" name="ColorId">
+                    <option>Choose</option>
+                    @foreach (var item in ViewBag.Color)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="size">
+            <div class="col-md-10 form-group">
+                <label>Choose Size</label>
+                <select class="form-control" name="SizeId">
+                    <option>Choose</option>
+                    @foreach (var item in ViewBag.Size)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="sizeOpt">
+            <div class="col-md-10 form-group">
+                <label>Size options</label>
+                <div class="options" name="SizeOptions" style="display: flex;justify-content: space-between;">
+                    <input class="form-control" name="SizeOptKey" type="text" placeholder="Option Key" style="width:49%" />
+                    <input class="form-control" name="SizeOptValue" type="text" placeholder="Option Value" style="width:49%" />
+                </div>
+
+                <div class="addItem">
+                    <span>+</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ImageFile, new { @class = "form-control", @type = "file", @multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SalePercent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SalePercent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SalePercent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.isNew, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.isNew, new { htmlAttributes = new { @style = "opacity:1;" } })
+                    @Html.ValidationMessageFor(model => model.isNew, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.isTopSelling, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.isTopSelling, new { htmlAttributes = new { @style = "opacity:1;" } })
+                    @Html.ValidationMessageFor(model => model.isTopSelling, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

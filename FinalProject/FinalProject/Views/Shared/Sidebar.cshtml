@@ -1,0 +1,67 @@
+﻿@model FinalProject.ViewModels.VmBlog
+<div class="col-lg-3 col-11">
+    <div class="sidebar">
+        <!-- Search Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Search.cshtml", new FinalProject.ViewModels.VmSearch { Page = "Blog" });
+        }
+        <!-- Search Area End -->
+
+        <div class="popularPosts">
+            <div class="title">
+                <h5>popular Posts</h5>
+            </div>
+            @foreach (var item in Model.Blogs.Take(Model.Blogs.Count > 3 ? 3 : Model.Blogs.Count))
+            {
+                <div class="single-post">
+                    <div class="post-img">
+                        <a href="@Url.Action("Details","Blogs",new { id=item.Id})"><img src="~/Uploads/Blog/@item.Images.FirstOrDefault().Name"></a>
+                    </div>
+                    <div class="content">
+                        <h6> <a href="@Url.Action("Details","Blogs",new { id=item.Id})">@item.Title</a></h6>
+                        <p>@item.CreateDate.ToString("MMMM dd, yyyy")</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="categories">
+            <div class="title">
+                <h5>Categories</h5>
+            </div>
+            <ul>
+                @foreach (var item in Model.Categories)
+                {
+                    <li><a href="@Url.Action("Categories","Blogs",new { id=item.Id})">@item.Name </a></li>
+                }
+            </ul>
+        </div>
+        @if (Model.saleBanners != null)
+        {
+            foreach (var item in Model.saleBanners.Where(s => s.Content == null).Take(1))
+            {
+                <div class="bannerArea d-flex justify-content-center">
+                    <div class="single-banner">
+                        <div class="banner-img"><img src="~/Uploads/SaleBanner/@item.Image"></div>
+                        <div class="banner-info">
+                            <h5>@item.Name</h5>
+                            <h3>@item.Title</h3>
+                            <a class="btn-white" href="@Url.Action("SaleProduct","Home",new {id=item.Id })">shop now</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="tags">
+            <div class="title">
+                <h5>tags</h5>
+            </div>
+            <div class="allTags">
+                @foreach (var item in Model.BlogTags)
+                {
+                    <a href="@Url.Action("Tags","Blogs",new { id=item.Id})">@item.Name</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

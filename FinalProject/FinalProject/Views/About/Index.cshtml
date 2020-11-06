@@ -1,0 +1,312 @@
+﻿@model FinalProject.ViewModels.VmAbout
+@{
+    ViewBag.Title = "About Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div id="aboutPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        <!-- Session Area Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @if (Session["SuccessfullSubscribe"] != null)
+                    {
+                        Session["SuccessfullSubscribe"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-success">
+                        Thank you!
+                    </div>
+                    }
+                    @if (Session["SameEmail"] != null)
+                    {
+                        Session["SameEmail"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-danger">
+                            This email already exists!
+                        </div>
+                    }
+                    @if (Session["EmptyEmail"] != null)
+                    {
+                        Session["EmptyEmail"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-danger">
+                            Please enter your e-mail address
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+       
+        <!-- Session Area End -->
+        <!-- About Us Area Start -->
+        <section id="aboutUs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="about-content">
+                            <div class="title">
+                                <p>About The Shopwise</p>
+                                <h2>@(Model.setting.AboutTitle!=null? Model.setting.AboutTitle:"")</h2>
+                            </div>
+                            <div class="main-content">
+                                <h5>
+                                    @(Model.setting.AboutSubtitle!=null? Model.setting.AboutSubtitle:"")
+                                </h5>
+                                <p>
+                                    @(Model.setting.AboutContent!=null? Model.setting.AboutContent:"")
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="about-img">
+                            <img src="~/Uploads/Setting/@(Model.setting.AboutImg!=null?Model.setting.AboutImg:"")" alt="@(Model.setting.AboutImg!=null?Model.setting.AboutImg:"")">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Us Area End -->
+        <!-- Choose Us Area Start -->
+        <section id="chooseUs">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="sec-title">
+                            <h2>Why Choose Us?</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="ourService">
+                            <div class="icon">
+                                <i class="far fa-edit"></i>
+                            </div>
+                            <div class="main-content">
+                                <h6>Creative Design</h6>
+                                <p>
+                                    There are many variations of passages of Lorem Ipsum
+                                    available, but the majority have suffered alteration in
+                                    some form
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="ourService">
+                            <div class="icon">
+                                <i class="fas fa-pencil-ruler"></i>
+                            </div>
+                            <div class="main-content">
+                                <h6>Creative Design</h6>
+                                <p>
+                                    There are many variations of passages of Lorem Ipsum
+                                    available, but the majority have suffered alteration in
+                                    some form
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="ourService">
+                            <div class="icon">
+                                <i class="far fa-edit"></i>
+                            </div>
+                            <div class="main-content">
+                                <h6>Creative Design</h6>
+                                <p>
+                                    There are many variations of passages of Lorem Ipsum
+                                    available, but the majority have suffered alteration in
+                                    some form
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="ourService">
+                            <div class="icon">
+                                <i class="far fa-edit"></i>
+                            </div>
+                            <div class="main-content">
+                                <h6>Creative Design</h6>
+                                <p>
+                                    There are many variations of passages of Lorem Ipsum
+                                    available, but the majority have suffered alteration in
+                                    some form
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="ourService">
+                            <div class="icon">
+                                <i class="far fa-edit"></i>
+                            </div>
+                            <div class="main-content">
+                                <h6>Creative Design</h6>
+                                <p>
+                                    There are many variations of passages of Lorem Ipsum
+                                    available, but the majority have suffered alteration in
+                                    some form
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="ourService">
+                            <div class="icon">
+                                <i class="far fa-edit"></i>
+                            </div>
+                            <div class="main-content">
+                                <h6>Creative Design</h6>
+                                <p>
+                                    There are many variations of passages of Lorem Ipsum
+                                    available, but the majority have suffered alteration in
+                                    some form
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Choose Us Area End -->
+        <!-- Mission Area Start -->
+        <section id="ourMission">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="video-area">
+                            <div class="single-img">
+                                <img class="w-100" src="~/Public/img/mission.jpg" alt="">
+                            </div>
+                            <div class="play-icon">
+                                <span>
+                                    <i class="fas fa-play"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="mission-content">
+                            <h2>Our Mission & Vision</h2>
+                            <p>
+                                If you are going to use a passage of Ipsum,
+                                you need to be sure there isn't anything embarrassing
+                                hidden in middle of text.
+                            </p>
+                            <div class="icon-box">
+                                <div class="icon">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>Easy To Customize</h5>
+                                    <p>
+                                        All the Lorem Ipsum generators on the Internet tend
+                                        to repeat predefined chunks as necessary.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>Easy To Customize</h5>
+                                    <p>
+                                        All the Lorem Ipsum generators on the Internet tend
+                                        to repeat predefined chunks as necessary.
+                                    </p>
+                                </div>
+                            </div>
+                            <a class="btn btn-pink" href="@Url.Action("Index","Terms")">read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Mision Area End -->
+        <!-- Testimonial Area Start -->
+        <section id="testimonial">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="title">
+                            <p>testimonial</p>
+                            <h2>our client say!</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="owl-caorusel-area">
+                            <div class="owl-carousel owl-theme">
+                                @foreach (var item in Model.testimonials)
+                                {
+                                    <div class="clients">
+                                        <div class="client-info">
+                                            <div class="client-img">
+                                                <img src="~/Uploads/Testimonial/@item.Image">
+                                            </div>
+                                            <div class="client-name">
+                                                <h5>@item.FullName</h5>
+                                                <p>@item.Position</p>
+                                            </div>
+                                        </div>
+                                        <div class="comment">
+                                            <p>
+                                                @item.Comment
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonial Area End -->
+        <!-- Partners Area Start -->
+        <section id="companies">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="owl-carousel owl-theme">
+                            @foreach (var item in Model.partners)
+                            {
+                                <div class="logo">
+                                    <img src="~/Uploads/Partner/@item.Image">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Partners Area End -->
+        <!-- Popup Video Area Start -->
+        <div id="popup-video">
+            <div class="video-wrapper">
+                <iframe class="mfp-iframe" src="@(Model.setting.VideoLink!=null?Model.setting.VideoLink:"")" frameborder="0" allowfullscreen=""></iframe>
+                <div class="icon">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Popup Video Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "About" });
+        }
+        <!-- Subscribe  Area End -->
+
+    </div>

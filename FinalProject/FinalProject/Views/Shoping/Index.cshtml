@@ -1,0 +1,126 @@
+﻿@model List<FinalProject.Models.ProductInfo>
+@{
+    ViewBag.Title = "Wishlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="shoppingBagPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        <!-- wishlist  Area Start -->
+        <section id="shoppingBagArea">
+            <div class="container">
+                <!-- Session Area Start -->
+                <div class="row">
+                    <div class="col-12">
+                        @if (Session["SuccessfullSubscribe"] != null)
+                        {
+                            Session["SuccessfullSubscribe"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-success">
+                            Thank you!
+                        </div>
+                        }
+                        @if (Session["SameEmail"] != null)
+                        {
+                            Session["SameEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                This email already exists!
+                            </div>
+                        }
+                        @if (Session["EmptyEmail"] != null)
+                        {
+                            Session["EmptyEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                Please enter your e-mail address
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- Session Area End -->
+                <div class="row justify-content-center">
+                    <div class="title">
+                        <h3>Default Wishlist</h3>
+                    </div>
+                    <div class="col-lg-11 col-12">
+                        <div class="single-product">
+                            @if (Model != null && Model.Count != 0)
+                            {
+                                <div class="product-info">
+
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>product Name</th>
+                                                <th>Price</th>
+                                                <th>Stock Status</th>
+                                                <th>Remove</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="img">
+                                                            <img src="~/Uploads/Product/@item.Images.FirstOrDefault().Name" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="@Url.Action("Details","Product",new { id=item.ProductId})">@item.Product.Name</a>
+                                                    </td>
+                                                    <td>
+                                                        <h6>
+                                                            @if (item.SalePercent != null)
+                                                            {
+                                                                if (item.SaleBanner.StartDate < DateTime.Now && item.SaleBanner.EndDate > DateTime.Now)
+                                                                {
+                                                                    <del><span class="ex-parice">$@item.Price.ToString("#.00")</span></del>
+                                                                    <span class="price">$@(Convert.ToDecimal(item.Price - ((item.Price * item.SalePercent) / 100)).ToString("#.00"))</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span class="price">$@item.Price.ToString("#.00")</span>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="price">$@item.Price.ToString("#.00")</span>
+                                                            }
+                                                        </h6>
+                                                    </td>
+                                                    <td>
+                                                        <p>@(item.Quantity>0?"Aviable":"Unavaible")</p>
+                                                    </td>
+                                                    <td>
+                                                        <a class="removeWishlist" data-id="@item.Id" href="">x</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        }
+                                    </table>
+                                </div>
+                            }
+                            else
+                            {
+                                <div style="margin-top:1rem;">
+                                    <p>Your Wishlist is currently empty.</p>
+                                    <a href="@Url.Action("Index","Product")" style="color:#FF324D ">Return To Shop</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- wishlist  Area end -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "Wishlist" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>
+

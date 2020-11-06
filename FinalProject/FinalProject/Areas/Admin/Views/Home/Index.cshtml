@@ -1,0 +1,139 @@
+﻿@model FinalProject.Areas.Admin.ViewModel.VmDashboard
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Dashboard </h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+
+    <div class="col-xl-3 col-sm-6">
+        <div class="card-box widget-box-three">
+            <div class="media">
+                <div class="avatar-lg bg-icon rounded-circle align-self-center">
+                    <i class="ti-image font-30 text-muted avatar-title"></i>
+                </div>
+                <div class="wigdet-two-content media-body text-right">
+                    <p class="mt-1 text-uppercase font-weight-medium">Users</p>
+                    <h2 class="mb-2"><span data-plugin="counterup">@(Model.Users!=null ? Model.Users.Count:0)</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- end col -->
+
+    <div class="col-xl-3 col-sm-6">
+        <div class="card-box widget-box-three">
+            <div class="media">
+                <div class="avatar-lg bg-icon rounded-circle align-self-center">
+                    <i class="ti-image font-30 text-muted avatar-title"></i>
+                </div>
+                <div class="wigdet-two-content media-body text-right">
+                    <p class="mt-1 text-uppercase font-weight-medium">Subscribes</p>
+                    <h2 class="mb-2"><span data-plugin="counterup">@(Model.Subscribes!=null ? Model.Subscribes.Count:0)</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- end col -->
+
+    <div class="col-xl-3 col-sm-6">
+        <div class="card-box widget-box-three">
+            <div class="media">
+                <div class="avatar-lg bg-icon rounded-circle align-self-center">
+                    <i class="ti-image font-30 text-muted avatar-title"></i>
+                </div>
+                <div class="wigdet-two-content media-body text-right">
+                    <p class="mt-1 text-uppercase font-weight-medium">Messages</p>
+                    <h2 class="mb-2"><span data-plugin="counterup">@(Model.Messages!=null ? Model.Messages.Count:0)</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- end col -->
+
+    <div class="col-xl-3 col-sm-6">
+        <div class="card-box widget-box-three">
+            <div class="media">
+                <div class="avatar-lg bg-icon rounded-circle align-self-center">
+                    <i class="ti-image font-30 text-muted avatar-title"></i>
+                </div>
+                <div class="wigdet-two-content media-body text-right">
+                    <p class="mt-1 text-uppercase font-weight-medium">Testimonials</p>
+                    <h2 class="mb-2"><span data-plugin="counterup">@(Model.Testimonials!=null ? Model.Testimonials.Count:0)</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- end col -->
+</div>
+<div class="row">
+
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Blogs </h4>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="card-box widget-box-three">
+            <div class="media">
+                <div class="avatar-lg bg-icon rounded-circle align-self-center">
+                    <i class="ti-image font-30 text-muted avatar-title"></i>
+                </div>
+                <div class="wigdet-two-content media-body text-right">
+                    <p class="mt-1 text-uppercase font-weight-medium">Total Post</p>
+                    <h2 class="mb-2"><span data-plugin="counterup">@(Model.Blogs!=null ? Model.Blogs.Count:0)</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- end col -->
+
+    <div class="col-xl-3 col-sm-6">
+        <div class="card-box widget-box-three">
+            <div class="media">
+                <div class="avatar-lg bg-icon rounded-circle align-self-center">
+                    <i class="ti-image font-30 text-muted avatar-title"></i>
+                </div>
+                <div class="wigdet-two-content media-body text-right">
+                    <p class="mt-1 text-uppercase font-weight-medium">Comments</p>
+                    <h2 class="mb-2"><span data-plugin="counterup">@(Model.Comments!=null ? Model.Comments.Count:0)</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- end col -->
+
+    <div class="col-xl-3 col-sm-6">
+        <div class="card-box widget-box-three">
+            <div class="media">
+                <div class="avatar-lg bg-icon rounded-circle align-self-center">
+                    <i class="ti-image font-30 text-muted avatar-title"></i>
+                </div>
+                <div class="wigdet-two-content media-body text-right">
+                    <p class="mt-1 text-uppercase font-weight-medium">Categories</p>
+                    <h2 class="mb-2"><span data-plugin="counterup">@(Model.BlogCategories!=null ? Model.BlogCategories.Count:0)</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- end col -->
+
+    <div class="col-xl-3 col-sm-6">
+        <div class="card-box widget-box-three">
+            <div class="media">
+                <div class="avatar-lg bg-icon rounded-circle align-self-center">
+                    <i class="ti-image font-30 text-muted avatar-title"></i>
+                </div>
+                <div class="wigdet-two-content media-body text-right">
+                    <p class="mt-1 text-uppercase font-weight-medium">Tags</p>
+                    <h2 class="mb-2"><span data-plugin="counterup">@(Model.Tags!=null ? Model.Tags.Count:0)</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>    <!-- end col -->
+</div>
+
+<!-- end row -->

@@ -1,0 +1,105 @@
+﻿@model FinalProject.ViewModels.VmBlog
+@{
+    ViewBag.Title = "Tags";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="homePage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        <!-- Session Area Start -->
+
+        <div class="row">
+            <div class="col-12">
+                @if (Session["SuccessfullSubscribe"] != null)
+                {
+                    Session["SuccessfullSubscribe"] = null;
+                <div style="margin-top:1rem;" class="alert alert-success">
+                    Thank you!
+                </div>
+                }
+                @if (Session["SameEmail"] != null)
+                {
+                    Session["SameEmail"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-danger">
+                        This email already exists!
+                    </div>
+                }
+                @if (Session["EmptyEmail"] != null)
+                {
+                    Session["EmptyEmail"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-danger">
+                        Please enter your e-mail address
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Session Area End -->
+        <!-- Blog Area Start -->
+        <section id="blogArea">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="title">
+                            <h2 style="text-transform:capitalize;">@(Model.blogTag.Name!=null? Model.blogTag.Name:"")</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @if (Model.Tag != null)
+                    {
+                        foreach (var item in Model.Blogs)
+                        {
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="single-blog">
+                                    <div class="blog-img">
+                                        <a href="@Url.Action("Details","Blogs",new { id=item.Id})">
+                                            <img src="~/Uploads/Blog/@item.Images.FirstOrDefault().Name" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="blog-info">
+                                        <h4>
+                                            <a href="@Url.Action("Details","Blogs",new { id=item.Id})">
+                                                @item.Title
+                                            </a>
+                                        </h4>
+                                        <p>
+                                            <span>
+                                                <i class="far fa-calendar"></i>
+                                                @item.CreateDate.ToString("dd MMM yyyy")
+                                            </span>
+                                            <span>
+                                                <i class="far fa-calendar"></i>
+                                                @(item.Comments!=null?item.Comments.Count:0)
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="blog-content">
+                                        <p>
+                                            @(item.Content.Length>130?Html.Raw(item.Content.Substring(0, 130)) :Html.Raw(item.Content))
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="w-100" style="text-align:center">
+                            Don't have any blog in @(Model.blogTag.Name!=null? Model.blogTag.Name:"") category.
+                        </p>
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "BlogTag" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>

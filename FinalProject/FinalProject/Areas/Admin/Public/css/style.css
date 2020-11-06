@@ -1,0 +1,48 @@
+﻿.categories .addItem {
+    position: absolute;
+    top: 50%;
+    right: -1%;
+}
+.categories .addItem span {
+        font-weight: 600;
+        font-size: 20px;
+        color: #ce0000;
+        cursor:pointer;
+    }
+
+.products{
+    position:relative;
+}
+.products .addItem {
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+.addItem span {
+    font-weight: 600;
+    font-size: 20px;
+    color: #ce0000;
+    cursor: pointer;
+}
+
+.sizeOpt{
+    position:relative;
+}
+.sizeOpt .addItem {
+    position: absolute;
+    top: 50%;
+    right: -1%;
+}
+
+.saleBanner {
+    position: relative;
+}
+    .saleBanner .addItem {
+        position: absolute;
+        margin-left: 10px;
+        font-weight: 600;
+        font-size: 20px;
+        color: #ce0000;
+        cursor: pointer;
+    }
+

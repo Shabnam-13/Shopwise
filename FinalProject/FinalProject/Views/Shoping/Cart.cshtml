@@ -1,0 +1,204 @@
+﻿@model List<FinalProject.Models.ProductInfo>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="shoppingBagPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+
+        <!-- cart Area Start -->
+
+        <section id="shoppingBagArea">
+            <div class="container">
+                <!-- Session Area Start -->
+                <div class="row">
+                    <div class="col-12">
+                        @if (Session["SuccessfullSubscribe"] != null)
+                        {
+                            Session["SuccessfullSubscribe"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-success">
+                                Thank you!
+                            </div>
+                        }
+                        @if (Session["SameEmail"] != null)
+                        {
+                            Session["SameEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                This email already exists!
+                            </div>
+                        }
+                        @if (Session["EmptyEmail"] != null)
+                        {
+                            Session["EmptyEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                Please enter your e-mail address
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- Session Area End -->
+                <div class="row justify-content-center">
+                    <div class="title">
+                        <h3>Default Shoppingbag</h3>
+                    </div>
+                    @if (Model != null && Model.Count != 0)
+                    {
+                        <div class="col-lg-11 col-12">
+                            <div class="single-product">
+                                <div class="product-info">
+
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>product</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Subtotal</th>
+                                                <th>Remove</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="img">
+                                                            <img src="~/Uploads/Product/@item.Images.FirstOrDefault().Name" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a href="@Url.Action("Details","Product",new{ id=item.ProductId})">@item.Product.Name</a>
+                                                    </td>
+                                                    <td>
+                                                        @{decimal price = 0;}
+                                                        @if (item.SalePercent != null)
+                                                        {
+                                                            if (item.SaleBanner.StartDate < DateTime.Now && item.SaleBanner.EndDate > DateTime.Now)
+                                                            {
+                                                                price = Convert.ToDecimal(item.Price - ((item.Price * item.SalePercent) / 100));
+                                                            }
+                                                            else
+                                                            {
+                                                                price = item.Price;
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            price = item.Price;
+                                                        }
+                                                        <h6>
+                                                            @if (item.SalePercent != null)
+                                                            {
+                                                                if (item.SaleBanner.StartDate < DateTime.Now && item.SaleBanner.EndDate > DateTime.Now)
+                                                                {
+                                                                    <del><span class="ex-parice">$@item.Price.ToString("#.00")</span></del>
+                                                                    <span class="price">$@(Convert.ToDecimal(item.Price - ((item.Price * item.SalePercent) / 100)).ToString("#.00"))</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span class="price">$@item.Price.ToString("#.00")</span>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="price">$@item.Price.ToString("#.00")</span>
+                                                            }
+                                                        </h6>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quantity">
+                                                            <input type="number" data-price="@price" class="cartItemCount" data-id="@item.Id" value="@item.Count" min="1" max="1000">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="totalPrice@(item.Id)">$@((item.Count*item.Price).ToString("#.00"))</h6>
+                                                    </td>
+                                                    <td>
+                                                        <a class="itemRemove" data-id="@item.Id" href="#">x</a>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        }
+                                    </table>
+                                </div>
+                                @*<div class="actions">
+                            <div class="update">
+                                <a class="btn-pink" href="#">update cart</a>
+                            </div>
+                        </div>*@
+                            </div>
+                        </div>
+                        <div class="col-lg-11 col-12">
+                            <div class="line">
+                                <p>x</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-11 col-12">
+                            <div class="totals">
+                                <div class="title">
+                                    <h5>cart totals</h5>
+                                </div>
+                                <table>
+                                    <tbody>
+                                        @{ decimal total = 0; decimal proPrice = 0;}
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.SalePercent != null)
+                                            {
+                                                if (item.SaleBanner.StartDate < DateTime.Now && item.SaleBanner.EndDate > DateTime.Now)
+                                                {
+                                                    proPrice = Convert.ToDecimal(item.Price - ((item.Price * item.SalePercent) / 100));
+                                                }
+                                                else
+                                                {
+                                                    proPrice = item.Price;
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                proPrice = item.Price;
+
+                                            }
+                                            total += item.Count * proPrice;
+                                        }
+                                        <tr>
+                                            <th>subtotal</th>
+                                            <td><h6 class="subtotalPrice">$@total.ToString("#.00")</h6></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="checkout">
+                                    <a class="btn-pink" href="@Url.Action("Checkout","Shoping")">Proceed to checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12">
+                            <div style="margin-top:1rem;">
+                                <p>Your Wishlist is currently empty.</p>
+                                <a href="@Url.Action("Index","Product")" style="color:#FF324D ">Return To Shop</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+        <!-- cart Area end -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "Cart" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>
+
+

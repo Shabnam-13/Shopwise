@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div id="errorPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        <section id="errorArea">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-10">
+                        <div class="text-area">
+                            <div class="error-text">
+                                <h1>404</h1>
+                                <h5>Oops! The page you requested was not found!</h5>
+                                <p>The page you are looking for was moved, removed, renamed or might never existed.</p>
+                            </div>
+                            <div class="btn-area">
+                                <a class="btn-pink" href="@Url.Action("Index","Home")">got to homepage</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+

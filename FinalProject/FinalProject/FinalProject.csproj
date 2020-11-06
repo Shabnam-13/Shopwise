@@ -1,0 +1,1150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{08B71ED7-BE16-4B5D-A1A1-8D3A7F6EEE3D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FinalProject</RootNamespace>
+    <AssemblyName>FinalProject</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogTagsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ColorsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FaqController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MessagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PartnersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductInfoController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SaleBannerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SizeOptionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SocialNetsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubcategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubOfSubcategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubscribesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TermsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestimonialController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Filters\Logout.cs" />
+    <Compile Include="Areas\Admin\ViewModel\VmDashboard.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\BlogsController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\FaqController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\ShopingController.cs" />
+    <Compile Include="Controllers\TermsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DAL\ShopwiseDB.cs" />
+    <Compile Include="Filters\logout.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008261920519_db.cs" />
+    <Compile Include="Migrations\202008261920519_db.designer.cs">
+      <DependentUpon>202008261920519_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008270753412_adrs.cs" />
+    <Compile Include="Migrations\202008270753412_adrs.designer.cs">
+      <DependentUpon>202008270753412_adrs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008271107292_kj.cs" />
+    <Compile Include="Migrations\202008271107292_kj.designer.cs">
+      <DependentUpon>202008271107292_kj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008271114066_length.cs" />
+    <Compile Include="Migrations\202008271114066_length.designer.cs">
+      <DependentUpon>202008271114066_length.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008271703557_kl.cs" />
+    <Compile Include="Migrations\202008271703557_kl.designer.cs">
+      <DependentUpon>202008271703557_kl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008280729518_pr.cs" />
+    <Compile Include="Migrations\202008280729518_pr.designer.cs">
+      <DependentUpon>202008280729518_pr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008291354439_km.cs" />
+    <Compile Include="Migrations\202008291354439_km.designer.cs">
+      <DependentUpon>202008291354439_km.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009090656290_j.cs" />
+    <Compile Include="Migrations\202009090656290_j.designer.cs">
+      <DependentUpon>202009090656290_j.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009101712191_hv.cs" />
+    <Compile Include="Migrations\202009101712191_hv.designer.cs">
+      <DependentUpon>202009101712191_hv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009101830010_cart.cs" />
+    <Compile Include="Migrations\202009101830010_cart.designer.cs">
+      <DependentUpon>202009101830010_cart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009110643195_jh.cs" />
+    <Compile Include="Migrations\202009110643195_jh.designer.cs">
+      <DependentUpon>202009110643195_jh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011031727493_dll.cs" />
+    <Compile Include="Migrations\202011031727493_dll.designer.cs">
+      <DependentUpon>202011031727493_dll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Admins.cs" />
+    <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\BlogCategory.cs" />
+    <Compile Include="Models\BlogImages.cs" />
+    <Compile Include="Models\BlogTags.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Color.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\Partner.cs" />
+    <Compile Include="Models\ProCategory.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductImages.cs" />
+    <Compile Include="Models\ProductInfo.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\SaleBanner.cs" />
+    <Compile Include="Models\Setting.cs" />
+    <Compile Include="Models\Size.cs" />
+    <Compile Include="Models\SizeOption.cs" />
+    <Compile Include="Models\SocialNet.cs" />
+    <Compile Include="Models\Subcategory.cs" />
+    <Compile Include="Models\SubOfSubcategory.cs" />
+    <Compile Include="Models\Subscribe.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\Term.cs" />
+    <Compile Include="Models\Testimonial.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\VmAbout.cs" />
+    <Compile Include="ViewModels\VmAddress.cs" />
+    <Compile Include="ViewModels\VmBlog.cs" />
+    <Compile Include="ViewModels\VmCheckout.cs" />
+    <Compile Include="ViewModels\VmComment.cs" />
+    <Compile Include="ViewModels\VmHome.cs" />
+    <Compile Include="ViewModels\VMLogin.cs" />
+    <Compile Include="ViewModels\VmMessage.cs" />
+    <Compile Include="ViewModels\VmPass.cs" />
+    <Compile Include="ViewModels\VmProduct.cs" />
+    <Compile Include="ViewModels\VmSearch.cs" />
+    <Compile Include="ViewModels\VmSite.cs" />
+    <Compile Include="ViewModels\VmSubscribe.cs" />
+    <Compile Include="ViewModels\VmUser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Public\css\app-dark-rtl.min.css" />
+    <Content Include="Areas\Admin\Public\css\app-dark.min.css" />
+    <Content Include="Areas\Admin\Public\css\app-rtl.min.css" />
+    <Content Include="Areas\Admin\Public\css\app.min.css" />
+    <Content Include="Areas\Admin\Public\css\bootstrap-dark.min.css" />
+    <Content Include="Areas\Admin\Public\css\bootstrap.min.css" />
+    <Content Include="Areas\Admin\Public\css\icons.min.css" />
+    <Content Include="Areas\Admin\Public\css\style.css" />
+    <Content Include="Areas\Admin\Public\dtp\bootstrap-datepicker.css" />
+    <Content Include="Areas\Admin\Public\dtp\bootstrap-datepicker.js" />
+    <Content Include="Areas\Admin\Public\dtp\bootstrap-datepicker.min.js" />
+    <Content Include="Areas\Admin\Public\dtp\bootstrap-datepicker.standalone.css" />
+    <Content Include="Areas\Admin\Public\dtp\bootstrap-datepicker3.css" />
+    <Content Include="Areas\Admin\Public\dtp\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Areas\Admin\Public\fonts\fa-brands-400.svg" />
+    <Content Include="Areas\Admin\Public\fonts\fa-regular-400.svg" />
+    <Content Include="Areas\Admin\Public\fonts\fa-solid-900.svg" />
+    <Content Include="Areas\Admin\Public\fonts\ioniconsde33.svg" />
+    <Content Include="Areas\Admin\Public\fonts\Pe-icon-7-strokebb1d.svg" />
+    <Content Include="Areas\Admin\Public\fonts\Simple-Line-Icons4c82.svg" />
+    <Content Include="Areas\Admin\Public\fonts\themify9f24.svg" />
+    <Content Include="Areas\Admin\Public\fonts\typicons.svg" />
+    <Content Include="Areas\Admin\Public\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="Areas\Admin\Public\images\animat-customize-color.gif" />
+    <Content Include="Areas\Admin\Public\images\animat-diamond-color.gif" />
+    <Content Include="Areas\Admin\Public\images\animat-rocket-color.gif" />
+    <Content Include="Areas\Admin\Public\images\animat-search-color.gif" />
+    <Content Include="Areas\Admin\Public\images\blog\1.jpg" />
+    <Content Include="Areas\Admin\Public\images\blog\2.jpg" />
+    <Content Include="Areas\Admin\Public\images\blog\3.jpg" />
+    <Content Include="Areas\Admin\Public\images\blog\4.jpg" />
+    <Content Include="Areas\Admin\Public\images\email\1.png" />
+    <Content Include="Areas\Admin\Public\images\email\2.png" />
+    <Content Include="Areas\Admin\Public\images\email\3.png" />
+    <Content Include="Areas\Admin\Public\images\favicon.ico" />
+    <Content Include="Areas\Admin\Public\images\flags\germany.jpg" />
+    <Content Include="Areas\Admin\Public\images\flags\italy.jpg" />
+    <Content Include="Areas\Admin\Public\images\flags\russia.jpg" />
+    <Content Include="Areas\Admin\Public\images\flags\spain.jpg" />
+    <Content Include="Areas\Admin\Public\images\flags\us.jpg" />
+    <Content Include="Areas\Admin\Public\images\happy.png" />
+    <Content Include="Areas\Admin\Public\images\icons\about.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\accept_database.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\address_book.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\add_column.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\add_database.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\add_image.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\add_row.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\advance.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\advertising.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\alarm_clock.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\alphabetical_sorting_az.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\alphabetical_sorting_za.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\answers.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\approval.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\approve.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\area_chart.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\assistant.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\audio_file.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\automatic.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\automotive.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\bad_decision.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\bar_chart.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\bearish.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\binoculars.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\biohazard.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\biomass.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\biotech.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\bookmark.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\briefcase.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\broken_link.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\bullish.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\business.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\businessman.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\businesswoman.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\business_contact.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\butting_in.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\cable_release.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\calculator.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\calendar.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\callback.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\call_transfer.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\camcorder.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\camcorder_pro.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\camera.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\camera_addon.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\camera_identification.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\cancel.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\candle_sticks.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\capacitor.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\cell_phone.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\charge_battery.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\checkmark.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\circuit.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\clapperboard.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\clear_filters.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\clock.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\close_up_mode.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\cloth.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\collaboration.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\collapse.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\collect.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\combo_chart.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\comments.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\compact_camera.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\conference_call.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\contacts.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\copyleft.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\copyright.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\crystal_oscillator.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\currency_exchange.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\cursor.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\customer_support.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\dam.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\database.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\data_backup.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\data_configuration.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\data_encryption.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\data_protection.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\data_recovery.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\data_sheet.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\debt.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\decision.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\delete_column.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\delete_database.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\delete_row.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\department.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\deployment.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\diploma_1.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\diploma_2.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\disapprove.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\disclaimer.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\dislike.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\display.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\document.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\donate.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\doughnut_chart.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\down.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\download.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\down_left.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\down_right.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\do_not_inhale.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\do_not_insert.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\do_not_mix.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\edit_image.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\electrical_sensor.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\electrical_threshold.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\electricity.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\electronics.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\electro_devices.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\empty_battery.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\empty_filter.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\empty_trash.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\end_call.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\engineering.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\entering_heaven_alive.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\expand.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\expired.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\export.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\external.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\factory.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\factory_breakdown.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\faq.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\feedback.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\feed_in.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\file.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\filing_cabinet.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\filled_filter.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\film.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\film_reel.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\fine_print.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\flash_auto.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\flash_off.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\flash_on.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\flow_chart.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\folder.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\frame.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\full_battery.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\full_trash.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\gallery.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\genealogy.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\generic_sorting_asc.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\generic_sorting_desc.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\globe.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\good_decision.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\graduation_cap.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\grid.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\headset.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\heat_map.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\high_battery.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\high_priority.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\home.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\icons8_cup.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\idea.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\image_file.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\import.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\info.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\inspection.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\integrated_webcam.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\internal.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\invite.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\in_transit.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\ipad.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\iphone.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\key.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\kindle.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\landscape.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\leave.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\left.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\left_down.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\left_down2.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\left_up.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\left_up2.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\library.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\light_at_the_end_of_tunnel.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\like.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\like_placeholder.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\line_chart.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\link.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\list.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\lock.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\lock_landscape.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\lock_portrait.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\low_battery.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\low_priority.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\make_decision.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\manager.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\medium_priority.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\menu.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\middle_battery.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\mind_map.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\minus.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\missed_call.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\mms.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\money_transfer.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\multiple_cameras.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\multiple_devices.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\multiple_inputs.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\multiple_smartphones.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\music.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\negative_dynamic.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\neutral_decision.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\neutral_trading.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\news.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\next.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\night_landscape.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\night_portrait.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\nook.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\no_idea.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\no_video.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\numerical_sorting_12.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\numerical_sorting_21.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\ok.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\old_time_camera.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\online_support.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\opened_folder.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\organization.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\org_unit.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\overtime.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\package.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\paid.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\panorama.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\parallel_tasks.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\phone.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\phone_android.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\photo_reel.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\picture.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\pie_chart.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\planner.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\plus.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\podium_without_speaker.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\podium_with_audience.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\podium_with_speaker.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\portrait_mode.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\positive_dynamic.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\previous.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\print.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\privacy.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\process.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\puzzle.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\questions.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\radar_plot.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\rating.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\ratings.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\reading.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\reading_ebook.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\redo.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\refresh.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\registered_trademark.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\remove_image.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\reuse.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\right.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\right_down.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\right_down2.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\right_up.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\right_up2.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\rotate_camera.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\rotate_to_landscape.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\rotate_to_portrait.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\ruler.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\rules.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\safe.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\sales_performance.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\scatter_plot.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\search.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\selfie.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\self_service_kiosk.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\serial_tasks.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\services.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\service_mark.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\settings.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\share.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\shipped.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\shop.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\signature.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\sim_card.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\sim_card_chip.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\slr_back_side.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\smartphone_tablet.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\sms.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\sound_recording_copyright.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\speaker.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\sports_mode.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\stack_of_photos.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\start.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\statistics.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\support.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\survey.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\switch_camera.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\synchronize.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\tablet_android.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\template.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\timeline.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\todo_list.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\touchscreen_smartphone.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\trademark.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\tree_structure.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\two_smartphones.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\undo.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\unlock.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\up.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\upload.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\up_left.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\up_right.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\video_call.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\video_file.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\video_projector.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\view_details.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\vip.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\voicemail.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\voice_presentation.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\webcam.svg" />
+    <Content Include="Areas\Admin\Public\images\icons\workflow.svg" />
+    <Content Include="Areas\Admin\Public\images\layouts\dark-rtl.png" />
+    <Content Include="Areas\Admin\Public\images\layouts\dark.png" />
+    <Content Include="Areas\Admin\Public\images\layouts\light.png" />
+    <Content Include="Areas\Admin\Public\images\layouts\rtl.png" />
+    <Content Include="Areas\Admin\Public\images\logo-light.png" />
+    <Content Include="Areas\Admin\Public\images\logo-sm.png" />
+    <Content Include="Areas\Admin\Public\images\logo.png" />
+    <Content Include="Areas\Admin\Public\images\properties\1.jpg" />
+    <Content Include="Areas\Admin\Public\images\properties\2.jpg" />
+    <Content Include="Areas\Admin\Public\images\properties\3.jpg" />
+    <Content Include="Areas\Admin\Public\images\properties\4.jpg" />
+    <Content Include="Areas\Admin\Public\images\properties\5.jpg" />
+    <Content Include="Areas\Admin\Public\images\properties\6.jpg" />
+    <Content Include="Areas\Admin\Public\images\shots\shot-1.png" />
+    <Content Include="Areas\Admin\Public\images\shots\shot-2.png" />
+    <Content Include="Areas\Admin\Public\images\shots\shot-3.png" />
+    <Content Include="Areas\Admin\Public\images\small\img-1.jpg" />
+    <Content Include="Areas\Admin\Public\images\small\img-2.jpg" />
+    <Content Include="Areas\Admin\Public\images\small\img-3.jpg" />
+    <Content Include="Areas\Admin\Public\images\small\img-4.jpg" />
+    <Content Include="Areas\Admin\Public\images\small\img-5.jpg" />
+    <Content Include="Areas\Admin\Public\images\small\img-6.jpg" />
+    <Content Include="Areas\Admin\Public\images\small\img-7.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-1.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-10.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-2.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-3.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-4.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-5.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-6.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-7.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-8.jpg" />
+    <Content Include="Areas\Admin\Public\images\users\avatar-9.jpg" />
+    <Content Include="Areas\Admin\Public\js\app.min.js" />
+    <Content Include="Areas\Admin\Public\js\mainScript.js" />
+    <Content Include="Areas\Admin\Public\js\pages\animate.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\blog-add.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\blog-dashboard.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\bxslider.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\c3.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\calendar.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\chartist.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\chartjs.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\coming-soon.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\dashboard.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\dashboard_2.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\datatables.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\email-compose.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\flot.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\form-advanced.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\form-fileuploads.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\form-masks.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\form-pickers.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\form-quilljs.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\form-summernote.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\form-validation.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\form-wizard.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\gallery.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\gmaps.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\google-charts.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\icon.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\jquery.chat.js" />
+    <Content Include="Areas\Admin\Public\js\pages\jquery.todo.js" />
+    <Content Include="Areas\Admin\Public\js\pages\jvectormap.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\mapael-map.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\morris.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\nestable.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\portlet.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\property-add.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\range-sliders.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\rating.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\real-estate-dashboard.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\responsive-table.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\sparkline.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\sweetalerts.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\tabledit.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\tablesaw.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\toastr.init.js" />
+    <Content Include="Areas\Admin\Public\js\pages\tooltipster.init.js" />
+    <Content Include="Areas\Admin\Public\js\script.js" />
+    <Content Include="Areas\Admin\Public\js\vendor.min.js" />
+    <Content Include="Areas\Admin\Public\libs\animate\animate.min.css" />
+    <Content Include="Areas\Admin\Public\libs\autocomplete\jquery.autocomplete.min.js" />
+    <Content Include="Areas\Admin\Public\libs\autonumeric\autoNumeric-min.js" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-colorpicker\bootstrap-colorpicker.min.css" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-colorpicker\bootstrap-colorpicker.min.js" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-datepicker\bootstrap-datepicker.min.css" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-datepicker\bootstrap-datepicker.min.js" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-daterangepicker\daterangepicker.css" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-filestyle2\bootstrap-filestyle.min.js" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-maxlength\bootstrap-maxlength.min.js" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-select\bootstrap-select.min.css" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-select\bootstrap-select.min.js" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-tagsinput\bootstrap-tagsinput.css" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-tagsinput\bootstrap-tagsinput.min.js" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-timepicker\bootstrap-timepicker.min.css" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-touchspin\jquery.bootstrap-touchspin.css" />
+    <Content Include="Areas\Admin\Public\libs\bootstrap-touchspin\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="Areas\Admin\Public\libs\bxslider\images\bx_loader.html" />
+    <Content Include="Areas\Admin\Public\libs\bxslider\images\controls.html" />
+    <Content Include="Areas\Admin\Public\libs\bxslider\jquery.bxslider.min.css" />
+    <Content Include="Areas\Admin\Public\libs\bxslider\jquery.bxslider.min.js" />
+    <Content Include="Areas\Admin\Public\libs\c3\c3.min.css" />
+    <Content Include="Areas\Admin\Public\libs\c3\c3.min.js" />
+    <Content Include="Areas\Admin\Public\libs\chart-js\Chart.bundle.min.js" />
+    <Content Include="Areas\Admin\Public\libs\chartist\chartist-plugin-tooltip.min.js" />
+    <Content Include="Areas\Admin\Public\libs\chartist\chartist.min.css" />
+    <Content Include="Areas\Admin\Public\libs\chartist\chartist.min.js" />
+    <Content Include="Areas\Admin\Public\libs\clockpicker\bootstrap-clockpicker.min.css" />
+    <Content Include="Areas\Admin\Public\libs\clockpicker\bootstrap-clockpicker.min.js" />
+    <Content Include="Areas\Admin\Public\libs\custombox\custombox.min.css" />
+    <Content Include="Areas\Admin\Public\libs\custombox\custombox.min.js" />
+    <Content Include="Areas\Admin\Public\libs\d3\d3.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\buttons.bootstrap4.min.css" />
+    <Content Include="Areas\Admin\Public\libs\datatables\buttons.bootstrap4.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\buttons.html5.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\buttons.print.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\dataTables.bootstrap4.min.css" />
+    <Content Include="Areas\Admin\Public\libs\datatables\dataTables.bootstrap4.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\dataTables.buttons.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\dataTables.colVis.css" />
+    <Content Include="Areas\Admin\Public\libs\datatables\dataTables.fixedColumns.min.html" />
+    <Content Include="Areas\Admin\Public\libs\datatables\dataTables.fixedHeader.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\dataTables.keyTable.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\dataTables.responsive.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\dataTables.scroller.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\fixedColumns.bootstrap4.min.html" />
+    <Content Include="Areas\Admin\Public\libs\datatables\fixedHeader.bootstrap4.min.css" />
+    <Content Include="Areas\Admin\Public\libs\datatables\jquery.dataTables.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\responsive.bootstrap4.min.css" />
+    <Content Include="Areas\Admin\Public\libs\datatables\responsive.bootstrap4.min.js" />
+    <Content Include="Areas\Admin\Public\libs\datatables\scroller.bootstrap4.min.css" />
+    <Content Include="Areas\Admin\Public\libs\dropify\dropify.min.css" />
+    <Content Include="Areas\Admin\Public\libs\dropify\dropify.min.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.axislabels.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.crosshair.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.orderBars.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.pie.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.resize.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.selection.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.stack.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.time.js" />
+    <Content Include="Areas\Admin\Public\libs\flot-charts\jquery.flot.tooltip.min.js" />
+    <Content Include="Areas\Admin\Public\libs\fonts\dropify-2.html" />
+    <Content Include="Areas\Admin\Public\libs\fonts\dropify-3.html" />
+    <Content Include="Areas\Admin\Public\libs\fonts\dropify-4.html" />
+    <Content Include="Areas\Admin\Public\libs\fonts\dropify.html" />
+    <Content Include="Areas\Admin\Public\libs\fullcalendar\fullcalendar.min.css" />
+    <Content Include="Areas\Admin\Public\libs\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Areas\Admin\Public\libs\gmaps\gmaps.min.js" />
+    <Content Include="Areas\Admin\Public\libs\img\switch.html" />
+    <Content Include="Areas\Admin\Public\libs\ion-rangeslider\ion.rangeSlider.css" />
+    <Content Include="Areas\Admin\Public\libs\ion-rangeslider\ion.rangeSlider.min.js" />
+    <Content Include="Areas\Admin\Public\libs\isotope\isotope.pkgd.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-countdown\jquery.countdown.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-knob\jquery.knob.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-mapael\jquery.mapael.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-mapael\usa_states.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-mapael\world_countries.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-mask-plugin\jquery.mask.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-mockjax\jquery.mockjax.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-quicksearch\jquery.quicksearch.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-scrollto\jquery.scrollTo.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-sparkline\jquery.sparkline.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-steps\jquery.steps.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-tabledit\jquery.tabledit.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-validation\jquery.validate.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-vectormap\jquery-jvectormap-1.2.2.css" />
+    <Content Include="Areas\Admin\Public\libs\jquery-vectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-vectormap\jquery-jvectormap-au-mill-en.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-vectormap\jquery-jvectormap-ca-lcc-en.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-vectormap\jquery-jvectormap-in-mill-en.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-vectormap\jquery-jvectormap-uk-mill-en.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-vectormap\jquery-jvectormap-us-il-chicago-mill-en.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-vectormap\jquery-jvectormap-us-merc-en.js" />
+    <Content Include="Areas\Admin\Public\libs\jquery-vectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Areas\Admin\Public\libs\jszip\jszip.min.js" />
+    <Content Include="Areas\Admin\Public\libs\katex\katex.min.js" />
+    <Content Include="Areas\Admin\Public\libs\magnific-popup\jquery.magnific-popup.min.js" />
+    <Content Include="Areas\Admin\Public\libs\magnific-popup\magnific-popup.css" />
+    <Content Include="Areas\Admin\Public\libs\moment\moment.min.js" />
+    <Content Include="Areas\Admin\Public\libs\morris-js\morris.min.js" />
+    <Content Include="Areas\Admin\Public\libs\multiselect\jquery.multi-select.js" />
+    <Content Include="Areas\Admin\Public\libs\multiselect\multi-select.css" />
+    <Content Include="Areas\Admin\Public\libs\nestable2\jquery.nestable.min.css" />
+    <Content Include="Areas\Admin\Public\libs\nestable2\jquery.nestable.min.js" />
+    <Content Include="Areas\Admin\Public\libs\parsleyjs\parsley.min.js" />
+    <Content Include="Areas\Admin\Public\libs\pdfmake\pdfmake.min.js" />
+    <Content Include="Areas\Admin\Public\libs\pdfmake\vfs_fonts.js" />
+    <Content Include="Areas\Admin\Public\libs\quill\quill.bubble.css" />
+    <Content Include="Areas\Admin\Public\libs\quill\quill.core.css" />
+    <Content Include="Areas\Admin\Public\libs\quill\quill.min.js" />
+    <Content Include="Areas\Admin\Public\libs\quill\quill.snow.css" />
+    <Content Include="Areas\Admin\Public\libs\raphael\raphael.min.js" />
+    <Content Include="Areas\Admin\Public\libs\ratings\jquery.raty-fa.js" />
+    <Content Include="Areas\Admin\Public\libs\rwd-table\rwd-table.min.css" />
+    <Content Include="Areas\Admin\Public\libs\rwd-table\rwd-table.min.js" />
+    <Content Include="Areas\Admin\Public\libs\select2\select2.min.css" />
+    <Content Include="Areas\Admin\Public\libs\select2\select2.min.js" />
+    <Content Include="Areas\Admin\Public\libs\summernote\font\summernote64fe-2.html" />
+    <Content Include="Areas\Admin\Public\libs\summernote\font\summernote64fe-3.html" />
+    <Content Include="Areas\Admin\Public\libs\summernote\font\summernote64fe.html" />
+    <Content Include="Areas\Admin\Public\libs\summernote\summernote-bs4.css" />
+    <Content Include="Areas\Admin\Public\libs\summernote\summernote-bs4.min.js" />
+    <Content Include="Areas\Admin\Public\libs\sweetalert2\sweetalert2.min.css" />
+    <Content Include="Areas\Admin\Public\libs\sweetalert2\sweetalert2.min.js" />
+    <Content Include="Areas\Admin\Public\libs\switchery\switchery.min.css" />
+    <Content Include="Areas\Admin\Public\libs\switchery\switchery.min.js" />
+    <Content Include="Areas\Admin\Public\libs\tablesaw\tablesaw.css" />
+    <Content Include="Areas\Admin\Public\libs\tablesaw\tablesaw.js" />
+    <Content Include="Areas\Admin\Public\libs\toastr\toastr.min.css" />
+    <Content Include="Areas\Admin\Public\libs\toastr\toastr.min.js" />
+    <Content Include="Areas\Admin\Public\libs\tooltipster\tooltipster.bundle.min.css" />
+    <Content Include="Areas\Admin\Public\libs\tooltipster\tooltipster.bundle.min.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Public\css\style.css" />
+    <Content Include="Public\img\about_img.jpg" />
+    <Content Include="Public\img\blog-img.jpg" />
+    <Content Include="Public\img\cl_logo2.png" />
+    <Content Include="Public\img\mission.jpg" />
+    <Content Include="Public\img\user1.jpg" />
+    <Content Include="Public\js\main.js" />
+    <Content Include="Uploads\Admins\profile_img.png" />
+    <Content Include="Uploads\User\profile_img.png" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Uploads\Blog\" />
+    <Folder Include="Uploads\Category\" />
+    <Folder Include="Uploads\Partner\" />
+    <Folder Include="Uploads\Product\" />
+    <Folder Include="Uploads\SaleBanner\" />
+    <Folder Include="Uploads\Setting\" />
+    <Folder Include="Uploads\Testimonial\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Public\fonts\fa-brands-400.eot" />
+    <Content Include="Areas\Admin\Public\fonts\fa-brands-400.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\fa-brands-400.woff" />
+    <Content Include="Areas\Admin\Public\fonts\fa-brands-400.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\fa-brands-400d41d.eot" />
+    <Content Include="Areas\Admin\Public\fonts\fa-regular-400.eot" />
+    <Content Include="Areas\Admin\Public\fonts\fa-regular-400.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\fa-regular-400.woff" />
+    <Content Include="Areas\Admin\Public\fonts\fa-regular-400.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\fa-regular-400d41d.eot" />
+    <Content Include="Areas\Admin\Public\fonts\fa-solid-900.eot" />
+    <Content Include="Areas\Admin\Public\fonts\fa-solid-900.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\fa-solid-900.woff" />
+    <Content Include="Areas\Admin\Public\fonts\fa-solid-900.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\fa-solid-900d41d.eot" />
+    <Content Include="Areas\Admin\Public\fonts\ioniconsde33.eot" />
+    <Content Include="Areas\Admin\Public\fonts\ioniconsde33.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\ioniconsde33.woff" />
+    <Content Include="Areas\Admin\Public\fonts\ioniconsde33.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\materialdesignicons-webfont2f9b.eot" />
+    <Content Include="Areas\Admin\Public\fonts\materialdesignicons-webfont2f9b.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\materialdesignicons-webfont2f9b.woff" />
+    <Content Include="Areas\Admin\Public\fonts\materialdesignicons-webfont2f9b.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\materialdesignicons-webfontd41d.eot" />
+    <Content Include="Areas\Admin\Public\fonts\Pe-icon-7-strokebb1d.eot" />
+    <Content Include="Areas\Admin\Public\fonts\Pe-icon-7-strokebb1d.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\Pe-icon-7-strokebb1d.woff" />
+    <Content Include="Areas\Admin\Public\fonts\Pe-icon-7-stroked41d.eot" />
+    <Content Include="Areas\Admin\Public\fonts\Simple-Line-Icons4c82.eot" />
+    <Content Include="Areas\Admin\Public\fonts\Simple-Line-Icons4c82.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\Simple-Line-Icons4c82.woff" />
+    <Content Include="Areas\Admin\Public\fonts\Simple-Line-Icons4c82.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\Simple-Line-Iconsd41d.eot" />
+    <Content Include="Areas\Admin\Public\fonts\themify9f24.eot" />
+    <Content Include="Areas\Admin\Public\fonts\themify9f24.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\themify9f24.woff" />
+    <Content Include="Areas\Admin\Public\fonts\themifyd41d.eot" />
+    <Content Include="Areas\Admin\Public\fonts\typicons.eot" />
+    <Content Include="Areas\Admin\Public\fonts\typicons.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\typicons.woff" />
+    <Content Include="Areas\Admin\Public\fonts\typiconsd41d.eot" />
+    <Content Include="Areas\Admin\Public\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Areas\Admin\Public\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Areas\Admin\Public\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Areas\Admin\Public\fonts\weathericons-regular-webfont.woff2" />
+    <Content Include="Areas\Admin\Public\fonts\weathericons-regular-webfontd41d.eot" />
+    <Content Include="Areas\Admin\Views\Terms\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Terms\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Terms\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Faq\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Faq\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Faq\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\SocialNets\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SocialNets\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SocialNets\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Partners\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Partners\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Partners\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Testimonial\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogCategories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogCategories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogTags\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogTags\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogTags\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Blogs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Subcategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Subcategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Subcategory\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\SubOfSubcategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SubOfSubcategories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SubOfSubcategories\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sizes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SizeOptions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SizeOptions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SizeOptions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SizeOptions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SizeOptions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Colors\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Colors\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Colors\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Colors\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Colors\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductInfo\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductInfo\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductInfo\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductInfo\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Subscribes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Messages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SaleBanner\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SaleBanner\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SaleBanner\Update.cshtml" />
+    <None Include="packages.config" />
+    <Content Include="Public\img\amarican_express-3.webp" />
+    <Content Include="Public\img\banner10.webp" />
+    <Content Include="Public\img\blog_img1-3-80x80.webp" />
+    <Content Include="Public\img\blog_img1-3.webp" />
+    <Content Include="Public\img\blog_single_img1-3.webp" />
+    <Content Include="Public\img\blog_single_img2-3.webp" />
+    <Content Include="Public\img\discover-3.webp" />
+    <Content Include="Public\img\furniture_img10-150x150.webp" />
+    <Content Include="Public\img\furniture_img10.webp" />
+    <Content Include="Public\img\furniture_img3-450x450.webp" />
+    <Content Include="Public\img\furniture_img4-150x150.webp" />
+    <Content Include="Public\img\furniture_img5-150x150.webp" />
+    <Content Include="Public\img\furniture_img7-150x150.webp" />
+    <Content Include="Public\img\furniture_img8-150x150.webp" />
+    <Content Include="Public\img\logo_dark-3.webp" />
+    <Content Include="Public\img\logo_light-3.webp" />
+    <Content Include="Public\img\master_card-3.webp" />
+    <Content Include="Public\img\menu_banner11.webp" />
+    <Content Include="Public\img\menu_banner22.webp" />
+    <Content Include="Public\img\menu_banner33.webp" />
+    <Content Include="Public\img\paypal-3.webp" />
+    <Content Include="Public\img\sidebar_banner_img1.webp" />
+    <Content Include="Public\img\strandmon-wing-chair-djuparp-dark-green__0531313_PE647261_S5.webp" />
+    <Content Include="Public\img\strandmon-wing-chair__0325450_PE517970_S5.webp" />
+    <Content Include="Public\img\strandmon-wing-chair__0513228_PE638849_S5.webp" />
+    <Content Include="Public\img\strandmon-wing-chair__0513996_PE639275_S5.webp" />
+    <Content Include="Public\img\strandmon-wing-chair__0690287_PE723209_S5.webp" />
+    <Content Include="Public\img\visa-3.webp" />
+    <Content Include="Views\Shared\_Subscribe.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Shared\Intro.cshtml" />
+    <Content Include="Views\Faq\Index.cshtml" />
+    <Content Include="Views\Terms\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Blogs\Index.cshtml" />
+    <Content Include="Views\Blogs\Details.cshtml" />
+    <Content Include="Views\Shared\Sidebar.cshtml" />
+    <Content Include="Views\Blogs\Categories.cshtml" />
+    <Content Include="Views\Blogs\Tags.cshtml" />
+    <Content Include="Views\Shared\Comment.cshtml" />
+    <Content Include="Views\Shared\Message.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Search\Blog.cshtml" />
+    <Content Include="Views\Shared\Search.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
+    <Content Include="Views\Product\Subcategory.cshtml" />
+    <Content Include="Views\Product\SubOfSubcategory.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shoping\Index.cshtml" />
+    <Content Include="Public\css\style.css.map" />
+    <Content Include="Views\Shoping\Cart.cshtml" />
+    <Content Include="Views\Search\Product.cshtml" />
+    <Content Include="Views\Shared\SearchPro.cshtml" />
+    <Content Include="Views\User\RecentlyView.cshtml" />
+    <Content Include="Views\Home\SaleProduct.cshtml" />
+    <Content Include="Views\Shoping\Checkout.cshtml" />
+    <Content Include="Views\User\Oreders.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202008261920519_db.resx">
+      <DependentUpon>202008261920519_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008270753412_adrs.resx">
+      <DependentUpon>202008270753412_adrs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008271107292_kj.resx">
+      <DependentUpon>202008271107292_kj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008271114066_length.resx">
+      <DependentUpon>202008271114066_length.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008271703557_kl.resx">
+      <DependentUpon>202008271703557_kl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008280729518_pr.resx">
+      <DependentUpon>202008280729518_pr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008291354439_km.resx">
+      <DependentUpon>202008291354439_km.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009090656290_j.resx">
+      <DependentUpon>202009090656290_j.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009101712191_hv.resx">
+      <DependentUpon>202009101712191_hv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009101830010_cart.resx">
+      <DependentUpon>202009101830010_cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009110643195_jh.resx">
+      <DependentUpon>202009110643195_jh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011031727493_dll.resx">
+      <DependentUpon>202011031727493_dll.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61108</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61108/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

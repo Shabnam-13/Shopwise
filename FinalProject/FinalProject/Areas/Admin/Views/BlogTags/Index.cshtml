@@ -1,0 +1,33 @@
+﻿@model IEnumerable<FinalProject.Models.BlogTags>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            <a href="@Url.Action("DeleteConfirmed","BlogTags", new { id = item.Id })" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

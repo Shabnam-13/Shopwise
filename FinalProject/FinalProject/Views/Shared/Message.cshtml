@@ -1,0 +1,18 @@
+﻿@model FinalProject.ViewModels.VmMessage
+    <form action="@Url.Action("Message","Contact")" method="post">
+        <div class="row">
+            
+            <div class="col-lg-6">
+                <input type="text" placeholder="your name" name="Name">
+                <input type="email" placeholder="your email" name="Email">
+            </div>
+            <div class="col-lg-6">
+                <input type="text" placeholder="your phone" name="Phone">
+                <input type="text" placeholder="subject" name="Subject">
+            </div>
+            <div class="col-lg-12">
+                <textarea name="Content" id="" cols="30" rows="10" placeholder="your message"></textarea>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">send message</button>
+    </form>

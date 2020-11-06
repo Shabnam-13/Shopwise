@@ -1,0 +1,81 @@
+﻿@model FinalProject.ViewModels.VMLogin
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div id="loginPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+
+        @if (Session["SuccessfullSubscribe"] != null)
+        {
+            Session["SuccessfullSubscribe"] = null;
+            <div class="container">
+                <div style="margin-top:1rem;" class="col-9 alert alert-success">
+                    Thank you!
+                </div>
+            </div>
+        }
+        @if (Session["SameEmail"] != null)
+        {
+            Session["SameEmail"] = null;
+            <div class="container">
+                <div style="margin-top:1rem;" class="col-9 alert alert-danger">
+                    This email already exists!
+                </div>
+            </div>
+        }
+        @if (Session["EmptyEmail"] != null)
+        {
+            Session["EmptyEmail"] = null;
+            <div class="container">
+                <div style="margin-top:1rem;" class="col-9 alert alert-danger">
+                    Please enter your e-mail address
+                </div>
+            </div>
+        }
+        <!-- Login  Area Start -->
+        <section id="formArea">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="login-form">
+                            <div class="title">
+                                <h3>Login</h3>
+                            </div>
+                            <form method="post">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <label>Username *</label>
+                                    <input type="text" name="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password *</label>
+                                    <input type="password" name="Password">
+                                </div>
+                                <button class="btn-pink">Log in</button>
+                                <div>
+                                    <span>
+                                        Dont have account?
+                                        <a style="display:inline-block;" href="@Url.Action("Register","User")"> Register now.</a>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Login  Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "Login" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>
+
+
+

@@ -1,0 +1,44 @@
+﻿@model List<FinalProject.Models.Product>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="homePage">
+    <!-- Intro Area Start -->
+    @{
+        Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+    }
+    <!-- Intro Area End -->
+    <!-- Blog Area Start -->
+    <section id="blogArea">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-8">
+                    <div class="title">
+                        <h2 style="text-transform:capitalize;">Blogs</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <p>546545</p>
+                    }
+                }
+                else
+                {
+                    <p class="w-100" style="text-align:center">
+                        Don't have any resaults.
+                    </p>
+                }
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Area End -->
+</div>
+
+

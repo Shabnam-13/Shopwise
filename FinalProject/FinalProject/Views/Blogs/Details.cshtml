@@ -1,0 +1,269 @@
+﻿@model FinalProject.ViewModels.VmBlog
+@{
+    ViewBag.Title = "Blog Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="blogPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        @if (Session["SuccessfullSubscribe"] != null)
+        {
+            Session["SuccessfullSubscribe"] = null;
+            <div class="container">
+                <div style="margin-top:1rem;" class="col-9 alert alert-success">
+                    Thank you!
+                </div>
+            </div>
+        }
+        @if (Session["SameEmail"] != null)
+        {
+            Session["SameEmail"] = null;
+            <div class="container">
+                <div style="margin-top:1rem;" class="col-9 alert alert-danger">
+                    This email already exists!
+                </div>
+            </div>
+        }
+        @if (Session["EmptyEmail"] != null)
+        {
+            Session["EmptyEmail"] = null;
+            <div class="container">
+                <div style="margin-top:1rem;" class="col-9 alert alert-danger">
+                    Please enter your e-mail address
+                </div>
+            </div>
+        }
+        <!-- Blog Area Start -->
+        <section id="blogArea">
+            <div class="container">
+                <!-- Session Area Start -->
+                <div class="row">
+                    <div class="col-12">
+                        @if (Session["SuccessfullComment"] != null)
+                        {
+                            Session["SuccessfullComment"] = null;
+
+                            <div class="alert alert-success" style="margin-bottom:2rem;">
+                                Comment send successfully!
+                            </div>
+                        }
+                        @if (Session["EmptyComment"] != null)
+                        {
+                            Session["EmptyComment"] = null;
+                            <div class="alert alert-danger" style="margin-bottom:2rem;">
+                                Please enter your Comment
+                            </div>
+                        }
+                        @if (Session["EmptyEmailorNameorSurname"] != null)
+                        {
+                            Session["EmptyEmailorNameorSurname"] = null;
+                            <div class="alert alert-danger" style="margin-bottom:2rem;">
+                                Email, surname and name is required!
+                            </div>
+                        }
+                        @if (Session["SuccessfullSubscribe"] != null)
+                        {
+                            Session["SuccessfullSubscribe"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-success">
+                                Successfully!
+                            </div>
+                        }
+                        @if (Session["SameEmail"] != null)
+                        {
+                            Session["SameEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                This email already exists!
+                            </div>
+                        }
+                        @if (Session["EmptyEmail"] != null)
+                        {
+                            Session["EmptyEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                Please enter your e-mail address
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- Session Area End -->
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-11">
+                        <div class="blogDetails">
+                            <div class="title">
+                                <h1>@(Model.Blog.Title!=null? Model.Blog.Title:"")<h1>
+                                <ul>
+                                    <li>
+                                        <span style="font-size:14px;"><i class="far fa-calendar"></i></span>
+                                        <span>@(Model.Blog.CreateDate!=null? Model.Blog.CreateDate.ToString("MMMM dd, yyyy"):"")</span>
+                                    </li>
+                                    <li>
+                                        <span style="font-size:14px;"><i class="far fa-folder"></i></span>
+                                        <span>@(Model.Blog.Category.Name!=null? Model.Blog.Category.Name:"")</span>
+                                    </li>
+                                    <li>
+                                        <span style="font-size:14px;"><i class="fas fa-tag"></i></span>
+
+                                        @foreach (var item in Model.Blog.Tags)
+                                        {
+                                            <span>
+                                                @item.blogTags.Name
+                                            </span>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="post-img">
+                                <img src="~/Uploads/Blog/@(Model.Blog.Images!=null?Model.Blog.Images.FirstOrDefault().Name:"")">
+                            </div>
+                            <div class="content">
+                                @if (Model.Blog.Content!=null && Model.Blog.Content.Contains("#img956") == true)
+                                {
+                                    <p>
+                                        @Html.Raw(Model.Blog.Content.Substring(0, @Model.Blog.Content.IndexOf("#img956")))
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        @(Model.Blog.Content!=null? Model.Blog.Content:"")
+                                    </p>
+                                }
+                                @if (Model.Blog.Quote != null)
+                                {
+                                    <blockquote>
+                                        <p>
+                                            @Model.Blog.Quote
+                                        </p>
+                                        <i class="fas fa-quote-right"></i>
+                                    </blockquote>
+                                }
+
+                                @if (Model.Blog.Content!=null && Model.Blog.Content.Contains("#img956") == true)
+                                {
+                                    <div class="imgArea">
+                                        <div class="row">
+                                            @foreach (var item in Model.Blog.Images)
+                                            {
+                                                if (item.Id != Model.Blog.Images.FirstOrDefault().Id)
+                                                {
+                                                    <div class="col-lg-6 col-md-6 col-12">
+                                                        <img src="~/Uploads/Blog/@item.Name">
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (Model.Blog.Content!=null && Model.Blog.Content.Contains("#img956") == true)
+                                {
+                                    <p>
+                                        @Html.Raw(Model.Blog.Content.Substring(@Model.Blog.Content.IndexOf("#img956") + 7))
+                                    </p>
+                                }
+                            </div>
+                        </div>
+                        <div class="thoughts">
+                            <div class="title">
+                                @if (Model.Blog.Comments.Count != 0)
+                                {
+                                    <h5>@Model.Blog.Comments.Count() thoughts on “@(Model.Blog.Title!=null? Model.Blog.Title:"")”</h5>
+                                }
+                                else
+                                {
+                                    <h5>Dan't have any thoughts on “@(Model.Blog.Title!=null? Model.Blog.Title:"")”</h5>
+                                }
+                            </div>
+                            <div class="commentsArea">
+                                <ul class="comments">
+                                    @if (Model.Blog.Comments != null)
+                                    {
+                                        foreach (var item in Model.Blog.Comments.Where(r => r.ParentCommentId == null))
+                                        {
+                                            <li class="single-comment">
+                                                <div class="main-comment">
+                                                    <div class="user-img">
+                                                        <img src="~/Uploads/User/@(item.User.Image != null ? item.User.Image : "profile_img.png")">
+                                                    </div>
+                                                    <div class="content w-100">
+                                                        <div class="user-info">
+                                                            <div class="user-name">
+                                                                <h6>@item.User.Name @item.User.Surname</h6>
+                                                                <p>@item.Createdate.ToString("MMMM dd, yyyy")</p>
+                                                            </div>
+                                                            <div class="reply">
+                                                                <a href="@Url.Action("Details","Blogs",new {CommentId=item.Id,isReply=true})"><i class="fas fa-reply-all"></i>Reply</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="user-comment">
+                                                            <p>
+                                                                @item.Content
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @if (item.Children != null)
+                                                {
+                                                    foreach (var reply in item.Children)
+                                                    {
+
+                                                        <div class="reply-comment" style="margin-left: 6rem;">
+                                                            <ul class="subcomments">
+                                                                <li class="single-subcomment">
+                                                                    <div class="main-comment">
+                                                                        <div class="user-img">
+                                                                            <img src="~/Uploads/User/@(reply.User.Image!=null?item.User.Image:"profile_img.png")">
+                                                                        </div>
+                                                                        <div class="content w-100">
+                                                                            <div class="user-info">
+                                                                                <div class="user-name">
+                                                                                    <h6>@reply.User.Name @reply.User.Surname</h6>
+                                                                                    <p>@reply.Createdate.ToString("MMMM dd, yyyy")</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="user-comment">
+                                                                                <p>
+                                                                                    @reply.Content
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    }
+                                                }
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Leave Reply Area Start -->
+                        @{
+                            Html.RenderPartial("~/Views/Shared/Comment.cshtml", new FinalProject.ViewModels.VmComment { ItemId = Model.Blog.Id, CommentId = Model.CommentId, isReply = Model.isReply });
+                        }
+                        <!-- Leave Reply Area End -->
+                    </div>
+                    <!-- Sidebar Area Start -->
+                    @{
+                        Html.RenderPartial("~/Views/Shared/Sidebar.cshtml", Model);
+                    }
+                    <!-- Sidebar Area End -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Blog Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "BlogDetails" ,ItemId=Model.Blog.Id});
+        }
+        <!-- Subscribe  Area End -->
+    </div>

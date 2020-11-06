@@ -1,0 +1,88 @@
+﻿@model IEnumerable<FinalProject.Models.Setting>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LogoDark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogoLight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VideoLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AboutImg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeImg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AboutTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AboutSubtitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AboutContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Copyright)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="~/Uploads/Setting/@item.LogoDark" alt="@item.LogoDark" width="100" />
+        </td>
+        <td>
+            <img src="~/Uploads/Setting/@item.LogoLight" alt="@item.LogoLight" width="100" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoLink)
+        </td>
+        <td>
+            <img src="~/Uploads/Setting/@item.AboutImg" alt="@item.AboutImg" width="100" />
+        </td>
+        <td>
+            <img src="~/Uploads/Setting/@item.HomeImg" alt="@item.HomeImg" width="100" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AboutTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AboutSubtitle)
+        </td>
+        <td>
+            @if (item.AboutContent == null)
+            {
+                @Html.DisplayFor(modelItem => item.AboutContent)
+            }
+            else
+            {
+                @(item.AboutContent.Length>200?Html.Raw(item.AboutContent.Substring(0,200)):Html.Raw(item.AboutContent))
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Copyright)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Update", new { id = item.Id }) |
+            <a href="@Url.Action("Delete","Setting", new { id = item.Id })" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

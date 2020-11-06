@@ -1,0 +1,144 @@
+﻿@model List<FinalProject.Models.ProductInfo>
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <dic id="checkoutPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        <!-- Session Area Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @if (Session["Unaviable"] != null)
+                    {
+                        Session["Unaviable"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-danger">
+                            Product is not avaible in stock
+                        </div>
+                    }
+                    @if (Session["ok"] != null)
+                    {
+                        Session["ok"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-success">
+                            Checkout completed successfully
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+       
+        <!-- Session Area End -->
+        <section id="checkout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="line">
+                            <p>x</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="title">
+                            <h4>Billing Details</h4>
+                        </div>
+                        @if (Session["Loginer"] == null)
+                        {
+                            <p>Returning customer? <a href="@Url.Action("Login","User")">Click here to login</a></p>
+                        }
+                        else
+                        {
+                            <div class="formArea">
+                                <form action="@Url.Action("Checkout","Shoping",new FinalProject.ViewModels.VmCheckout { })" method="post">
+                                    <div class="form-group">
+                                        <label>Country*</label>
+                                        <input name="Country" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Street address*</label>
+                                        <input name="Street" type="text" placeholder="House number and street name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="AddressDetails" type="text" placeholder="Apartment, suite, unit etc.(optional)">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>City*</label>
+                                        <input name="City" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Postcode/ZIP*</label>
+                                        <input name="ZipCode" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone*</label>
+                                        <input name="Phone" type="text">
+                                    </div>
+                                    @foreach (var item in Model)
+                                    {
+                                        <input type="hidden" name="ProductCount" value="@item.Count" />
+                                        <input type="hidden" name="ProductId" value="@item.Id" />
+                                    }
+
+                                    @*<div class="form-group">
+                                        <input type="checkbox">
+                                        <label for="">
+                                            I have read and agree to the website
+                                            <a href="termsAndConditions.html">terms and conditions*</a>
+                                        </label>
+                                    </div>*@
+                                    <button class="btn-pink" type="submit">Place order</button>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="yourOrder">
+                            <div class="title">
+                                <h4>Your Order</h4>
+                            </div>
+                            <div class="orderDetails">
+                                <table>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td> @item.Product.Name<span>x @item.Count</span> </td>
+                                            <td>$@((item.Price*item.Count).ToString("#.00"))</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        @{ decimal total = 0;}
+                                        @foreach (var item in Model)
+                                        {
+                                            total += item.Count * item.Price;
+                                        }
+                                        <th>Total</th>
+                                        <td>@total.ToString("#.00")</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="policy">
+                                <p>
+                                    Sorry, it seems that there are no available payment methods for your state.
+                                    Please contact us if you require assistance or wish to make alternate
+                                    arrangements.
+                                </p>
+                                <p>
+                                    Your personal data will be used to process your order, support your experience
+                                    throughout this website, and for other purposes described in our <a href="faq.html">privacy policy</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </dic>
+

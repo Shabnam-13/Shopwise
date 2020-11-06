@@ -1,0 +1,390 @@
+﻿@using FinalProject.Models
+@model List<FinalProject.Models.Order>
+@{
+    ViewBag.Title = "My Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = (User)Session["Loginer"]; 
+    List<string> wishlist = ViewBag.Wishlist;
+    List<string> cart = ViewBag.Cart;
+}
+
+    <div id="profilePage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+
+        <!-- Acoount Info Area Start -->
+        <section id="account">
+            <div class="container">
+                <!-- Session Area Start -->
+                <div class="row">
+                    <div class="col-12">
+                        @if (Session["SuccessfullSubscribe"] != null)
+                        {
+                            Session["SuccessfullSubscribe"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-success">
+                                Thank you!
+                            </div>
+                        }
+                        @if (Session["SameEmail"] != null)
+                        {
+                            Session["SameEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                This email already exists!
+                            </div>
+                        }
+                        @if (Session["EmptyEmail"] != null)
+                        {
+                            Session["EmptyEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                Please enter your e-mail address
+                            </div>
+                        }
+                        @if (Session["newPass"] != null)
+                        {
+                            Session["newPass"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                New password is not correct.
+                            </div>
+                        }
+                        @if (Session["oldPass"] != null)
+                        {
+                            Session["newPass"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                Old password is not correct.
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- Session Area End -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="user-info">
+                            <div class="title">
+                                <h1>
+                                    hello <span>@user.Name</span>!
+                                </h1>
+                                <p>Need to switch users? <span> <a href="@Url.Action("Logout","User")"> Log out</a></span></p>
+                            </div>
+                            <div class="user-img">
+                                <img src="~/Uploads/User/@(user.Image!=null?user.Image:"profile_img.png")">
+                            </div>
+                        </div>
+                        <div class="upgarde-family">
+                            <h6>join <span>Shopwise</span> family</h6>
+                            <p>
+                                You know what you like best. So we get to know your tastes, ideas and plans, to
+                                create the perfect Shopwise experience just for you.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="profile-history">
+                            <div class="content">
+                                <a href="@Url.Action("Oreders","User",new FinalProject.ViewModels.VmUser{userId=user.Id} )">order history</a>
+                                @if (Model.Where(s => s.UserId == user.Id) != null)
+                                {
+                                    <p> @Model.Count active orders</p>
+                                }
+                                else
+                                {
+                                    <p>No active orders</p>
+                                }
+                            </div>
+                            <div class="icon">
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="profile-history">
+                            <div class="content">
+                                <a href="@Url.Action("Index","Shoping")">wishlist</a>
+                                @if (ViewBag.wishlistCount != 0)
+                                {
+                                    <p> @ViewBag.wishlistCount products in the wishlist</p>
+                                }
+                                else
+                                {
+                                    <p>No products in the wishlist</p>
+                                }
+                            </div>
+                            <div class="icon">
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="profile-history">
+                            <div class="content">
+                                <a href="@Url.Action("Cart","Shoping")">shopping bag</a>
+                                @if (ViewBag.CartCount != 0)
+                                {
+                                    <p> @ViewBag.CartCount products in the cart</p>
+                                }
+                                else
+                                {
+                                    <p>No products in the cart</p>
+                                }
+                            </div>
+                            <div class="icon">
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="profile-edit active" data-index="1">
+                            <h6>Account</h6>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="profile-edit" data-index="2">
+                            <h6>Address</h6>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="profile-edit" data-index="3">
+                            <h6>Settings</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="edit-area">
+                            <div class="edit-account myActive" data-index="1">
+                                <div class="personal-info">
+                                    <div class="title">
+                                        <h6>Personal information</h6>
+                                        <div class="edit-btn">
+                                            <a href="#">Edit</a>
+                                        </div>
+                                    </div>
+                                    <div class="info-area">
+                                        <div class="small-info">
+                                            <p>@user.Name @user.Surname</p>
+                                        </div>
+                                        <div class="edit-form">
+                                            <form action="@Url.Action("Update","User", new FinalProject.ViewModels.VmUser {userId=user.Id })" method="post">
+                                                <div class="form-group">
+                                                    <input type="text" name="Name" value="@user.Name" placeholder="First name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="Surname" value="@user.Surname" placeholder="Last name">
+                                                </div>
+                                                <div class="btns">
+                                                    <button class="btn-pink" type="submit">Save changes</button>
+                                                    <button class="btn-black">Cansel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="personal-info">
+                                    <div class="title">
+                                        <h6>Contact</h6>
+                                        <div class="edit-btn">
+                                            <a href="#">Edit</a>
+                                        </div>
+                                    </div>
+                                    <div class="info-area">
+                                        <div class="small-info">
+                                            <p>
+                                                @if (user.Phone == null)
+                                                {
+                                                    <span>Add mobile</span>
+                                                    <span>Unverified</span>
+                                                }
+                                                else
+                                                {
+                                                    @user.Phone
+                                                }
+                                            </p>
+                                            <p>@user.Email</p>
+                                        </div>
+                                        <div class="edit-form">
+                                            <form method="post" action="@Url.Action("Update","User", new FinalProject.ViewModels.VmUser {userId=user.Id })">
+                                                <div class="form-group">
+                                                    <label>Mobile (Optional)</label>
+                                                    <input type="text" value="@user.Phone" name="Phone" placeholder="12 345 67 89">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" value="@user.Email" name="Email" placeholder="Email">
+                                                    <p>
+                                                        Updating your email address will automatically send a new
+                                                        verification link to the email address provided.
+                                                    </p>
+                                                </div>
+                                                <div class="btns">
+                                                    <button class="btn-pink" type="submit">Save changes</button>
+                                                    <button class="btn-black">Cansel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="personal-info">
+                                    <div class="title">
+                                        <h6>Password</h6>
+                                        <div class="edit-btn">
+                                            <a href="#">Edit</a>
+                                        </div>
+                                    </div>
+                                    <div class="info-area">
+                                        <div class="small-info">
+                                            <p>*******</p>
+                                        </div>
+                                        <div class="edit-form">
+                                            <form action="@Url.Action("ChangePass","User",new FinalProject.ViewModels.VmPass { UserId=user.Id })" method="post">
+                                                <div class="form-group">
+                                                    <input type="password" name="oldPass" placeholder="Current password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="newPass" placeholder="New password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="confirmPass" placeholder="Confirm new password">
+                                                </div>
+                                                <div class="btns">
+                                                    <button type="submit" class="btn-pink">Save changes</button>
+                                                    <button class="btn-black">Cansel</button>
+                                                </div>
+                                                <input type="hidden" value="@user.Id" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="edit-address" data-index="2">
+                                <div class="personal-info">
+                                    <div class="title">
+                                        <h6>Primary</h6>
+                                        <div class="edit-btn">
+                                            <a href="#">Edit</a>
+                                        </div>
+                                    </div>
+                                    <div class="info-area">
+                                        <div class="small-info">
+                                            @if (user.Addresses == null)
+                                            {
+                                                <p>
+                                                    You don't have a saved address. Store an address and save time during
+                                                    the checkout process.
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p>
+                                                    @user.Addresses.FirstOrDefault(p => p.IsPrimary == true).Street,
+                                                    @user.Addresses.FirstOrDefault(p => p.IsPrimary == true).City,
+                                                    @user.Addresses.FirstOrDefault(p => p.IsPrimary == true).Country
+                                                </p>
+                                            }
+                                        </div>
+                                        <div class="edit-form">
+                                            <form action="@Url.Action("Address","User",new FinalProject.ViewModels.VmAddress { isPrimary="true",userId=user.Id })" method="post">
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Country" name="Country" value="@(user.Addresses.FirstOrDefault(p => p.IsPrimary == true)!=null? user.Addresses.FirstOrDefault(p => p.IsPrimary == true).Country:"")">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Street address" name="Street" value="@(user.Addresses.FirstOrDefault(p => p.IsPrimary == true)!=null? user.Addresses.FirstOrDefault(p => p.IsPrimary == true).Street:"")">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Detailed address(Optional)" name="DetailedAddress" value="@(user.Addresses.FirstOrDefault(p => p.IsPrimary == true)!=null? user.Addresses.FirstOrDefault(p => p.IsPrimary == true).DetailedAddress:"")">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="City" name="City" value="@(user.Addresses.FirstOrDefault(p => p.IsPrimary == true)!=null? user.Addresses.FirstOrDefault(p => p.IsPrimary == true).City:"")">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Zip code" name="Zipcode" value="@(user.Addresses.FirstOrDefault(p => p.IsPrimary == true)!=null? user.Addresses.FirstOrDefault(p => p.IsPrimary == true).Zipcode:"")">
+                                                </div>
+                                                <div class="btns">
+                                                    <button class="btn-pink" type="submit">Save changes</button>
+                                                    <button class="btn-black">Cansel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="edit-settings" data-index="3">
+                                <div class="personal-info">
+                                    <div class="title">
+                                        <h6>User information</h6>
+                                        <div class="edit-btn">
+                                            <a href="#">Edit</a>
+                                        </div>
+                                    </div>
+                                    <div class="info-area">
+                                        <div class="small-info">
+                                            <p>@user.Username</p>
+                                        </div>
+                                        <div class="edit-form">
+                                            <form action="@Url.Action("Update","User", new FinalProject.ViewModels.VmUser {userId=user.Id })" method="post">
+                                                <div class="form-group">
+                                                    <input type="text" name="Username" value="@user.Username" placeholder="Username">
+                                                </div>
+                                                <div class="btns">
+                                                    <button class="btn-pink" type="submit">Save changes</button>
+                                                    <button class="btn-black">Cansel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="personal-info">
+                                    <div class="title">
+                                        <h6>Change or Add Photo</h6>
+                                        <div class="edit-btn">
+                                            <a href="#">Edit</a>
+                                        </div>
+                                    </div>
+                                    <div class="info-area">
+                                        <div class="small-info">
+                                            @if (user.Image != null)
+                                            {
+                                                <p>Change your photo.</p>
+                                            }
+                                            else
+                                            {
+                                                <p>You don't have photo.Add new photo now.</p>
+                                            }
+                                        </div>
+                                        <div class="edit-form">
+                                            <form action="@Url.Action("Update","User")" method="post" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <img src="~/Uploads/User/@(user.Image!=null?user.Image:"")" alt="Alternate Text" width="100" />
+                                                    <input type="file" name="ImageFile">
+                                                </div>
+                                                <div class="btns">
+                                                    <button class="btn-pink" type="submit">Save changes</button>
+                                                    <button class="btn-black">Cansel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="personal-info">
+                                    <div class="title">
+                                        <h6>Delete Account</h6>
+                                        <p>Do you wont to delete your account?</p>
+                                        <h6><a href="@Url.Action("DeleteUser","User",new FinalProject.ViewModels.VmUser { userId=user.Id})" onclick="return confirm('Are you sure?')">Delete</a></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Acoount Info Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "User" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>

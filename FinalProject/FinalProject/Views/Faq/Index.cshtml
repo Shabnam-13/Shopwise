@@ -1,0 +1,103 @@
+﻿@model FinalProject.ViewModels.VmSite
+@{
+    ViewBag.Title = "FAQ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="faqPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        <!-- Session Area Start -->
+
+        <div class="row">
+            <div class="col-12">
+                @if (Session["SuccessfullSubscribe"] != null)
+                {
+                    Session["SuccessfullSubscribe"] = null;
+                <div style="margin-top:1rem;" class="alert alert-success">
+                    Thank you!
+                </div>
+                }
+                @if (Session["SameEmail"] != null)
+                {
+                    Session["SameEmail"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-danger">
+                        This email already exists!
+                    </div>
+                }
+                @if (Session["EmptyEmail"] != null)
+                {
+                    Session["EmptyEmail"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-danger">
+                        Please enter your e-mail address
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Session Area End -->
+        <!-- FAQ Area Start -->
+        <section id="faqArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="title">
+                            <h3>General questions</h3>
+                        </div>
+                        @foreach (var item in Model.questions)
+                        {
+                            if (item.isGeneral == true)
+                            {
+                                <div class="question-area">
+                                    <div class="question">
+                                        <h6>@item.Questions</h6>
+                                        <div class="icon">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="reply">
+                                        <p>
+                                            @item.Reply
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="title">
+                            <h3>Other questions</h3>
+                        </div>
+                        @foreach (var item in Model.questions)
+                        {
+                            if (item.isGeneral == false)
+                            {
+                                <div class="question-area">
+                                    <div class="question">
+                                        <h6>@item.Questions</h6>
+                                        <div class="icon">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="reply">
+                                        <p>
+                                            @item.Reply
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "Faq" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>
+

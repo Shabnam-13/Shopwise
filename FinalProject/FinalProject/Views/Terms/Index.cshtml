@@ -1,0 +1,66 @@
+﻿@model FinalProject.ViewModels.VmSite
+
+@{
+    ViewBag.Title = "Terms And Conditions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="termsPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        <!-- Session Area Start -->
+        <div class="row">
+            <div class="col-12">
+                @if (Session["SuccessfullSubscribe"] != null)
+                {
+                    Session["SuccessfullSubscribe"] = null;
+                <div style="margin-top:1rem;" class="alert alert-success">
+                    Thank you!
+                </div>
+                }
+                @if (Session["SameEmail"] != null)
+                {
+                    Session["SameEmail"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-danger">
+                        This email already exists!
+                    </div>
+                }
+                @if (Session["EmptyEmail"] != null)
+                {
+                    Session["EmptyEmail"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-danger">
+                        Please enter your e-mail address
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Session Area End -->
+        <!-- Terms Area Start -->
+        <section id="termsArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 borders">
+                        @foreach (var item in Model.terms)
+                        {
+                            <div class="ourTerms">
+                                <h6>@item.Title</h6>
+                                <p>
+                                    @Html.Raw(item.Content)
+                                </p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Terms Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "Terms" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>
+

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FinalProject.Models.Subscribe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SendDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SendDate)
+        </td>
+        <td>
+            <a href="@Url.Action("Delete","Subscribes", new { id = item.Id })" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

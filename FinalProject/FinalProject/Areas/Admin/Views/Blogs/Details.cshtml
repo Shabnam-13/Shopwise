@@ -1,0 +1,99 @@
+﻿@model FinalProject.Models.Blog
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Created by
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin.Name)
+            @Html.DisplayFor(model => model.Admin.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Read)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Read)
+        </dd>
+
+        <dt>
+            Category
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            Tags
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Tags)
+            {
+                <span>@item.blogTags.Name; </span>
+            }
+        </dd>
+
+        <dt>
+            Images
+        </dt>
+
+        <dd>
+
+            @foreach (var item in Model.Images)
+            {
+                <img src="~/Uploads/Blog/@item.Name" alt="Alternate Text" width="100" />
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

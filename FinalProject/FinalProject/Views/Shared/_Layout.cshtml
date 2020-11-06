@@ -1,0 +1,348 @@
+﻿@using FinalProject.DAL
+@{
+    ShopwiseDB db = new ShopwiseDB();
+    ViewBag.Contact = db.Contact.FirstOrDefault();
+    ViewBag.Socials = db.SocialNet.ToList();
+    ViewBag.Setting = db.Setting.FirstOrDefault();
+    List<string> wishlist = ViewBag.Wishlist;
+    List<string> cart = ViewBag.Cart;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="~/Public/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div id="myNav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/Uploads/Setting/@(ViewBag.Setting.LogoDark!=null?ViewBag.Setting.LogoDark:"")" alt=""></a>
+                            <div class="d-flex">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                                <ul class="navbar-nav shop-nav">
+                                    @*<li class="nav-item search">
+                                            <a class="nav-link" href="#">
+                                                <i class="fa fa-search"
+                                                   aria-hidden="true"></i>
+                                            </a>
+                                        </li>*@
+                                    <li class="nav-item dropdown dropdown-account screen-lg">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                           role="button" data-toggle="dropdown" aria-haspopup="true"
+                                           aria-expanded="false">
+                                            <i class="far fa-user"></i>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <div class="account-title">
+                                                <h6>Welcome</h6>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="@Url.Action("Index","User")">
+                                                        <i class="fas fa-user-circle"></i>
+                                                        <span>My Profile</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("Oreders","User")">
+                                                        <i class="fas fa-box-open"></i>
+                                                        <span>My orders</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("RecentlyView","User")">
+                                                        <i class="fas fa-history"></i>
+                                                        <span>Recently viewed</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("Index","Contact")">
+                                                        <i class="fas fa-info-circle"></i>
+                                                        <span>help & contact</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="sign-in-btn">
+                                                <a class="btn btn-black" href="@Url.Action("Login","User")">Login</a>
+                                                <span>or</span>
+                                                <a class="btn btn-pink" href="@Url.Action("Register","User")">Register</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="@Url.Action("Index","Shoping")">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown-cart">
+                                        <a class="nav-link" href="@Url.Action("Cart","Shoping")">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            <span class="cartCount">@ViewBag.CartCount</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="collapse navbar-collapse overflow-aito" id="navbarSupportedContent">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@Url.Action("Index","Home")">
+                                                Home <span class="sr-only">(current)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@Url.Action("Index","About")">About Us</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@Url.Action("Index","Contact")">Contact Us</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@Url.Action("Index","Blogs")">Blog</a>
+                                        </li>
+                                        <li class="nav-item dropdown dropdown-product">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                                               aria-expanded="false">
+                                                Products
+                                                <i class="fas fa-angle-down"></i>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <ul class="category">
+                                                    <div class="row no-gutters">
+                                                        @if (ViewBag.Category != null)
+                                                        {
+                                                            foreach (var item in ViewBag.Category)
+                                                            {
+                                                                <div class="col-lg-4 col-md-4 col-6">
+                                                                    <li class="category-item">
+                                                                        <a class="category-title" href="@Url.Action("Category","Product",new { id=item.Id})">@item.Name</a>
+                                                                        <ul class="subcategory">
+                                                                            @foreach (var sabCat in item.Subcategories)
+                                                                            {
+                                                                                <li class="subcategory-item">
+                                                                                    <a href="@Url.Action("Subcategory","Product",new { id=sabCat.Id})">@sabCat.Name</a>
+                                                                                </li>
+                                                                            }
+                                                                        </ul>
+                                                                    </li>
+                                                                </div>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </ul>
+                                              
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown dropdown-account screen-md">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                                               aria-expanded="false">
+                                                My Account
+                                                <i class="fas fa-angle-down"></i>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <ul>
+                                                    <li>
+                                                        <a href="@Url.Action("Index","User")">
+                                                            <span>My Profile</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="@Url.Action("Orders","User" )">
+                                                                <span>My orders</span>
+                                                            </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="@Url.Action("RecentlyView","User")">
+                                                            <span>Recently viewed</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="@Url.Action("Index","Contact")">
+                                                            <span>help & contact</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="@Url.Action("Login","User")">
+                                                            <span>Login</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="@Url.Action("Register","User")">
+                                                            <span>Register</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <!-- <li class="nav-item screen-md">
+                                            <a class="nav-link" href="#">
+                                                Wishlist
+                                            </a>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+        @*<div id="popup-search">
+                <div class="search-wrapper">
+                    <div class="search-form">
+                        <input type="text">
+                        <div class="search-icon">
+                            <a href="#">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="close-icon">
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>*@
+    </main>
+
+    <footer>
+        <section id="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="logo-area">
+                                <div class="logo">
+                                    <a href="@Url.Action("Index","Home")"><img src="~/Uploads/Setting/@(ViewBag.Setting.LogoLight!=null?ViewBag.Setting.LogoLight:"")"></a>
+                                    <p>
+                                        If you are going to use of Lorem Ipsum need to
+                                        be sure there isn't hidden of text
+                                    </p>
+                                </div>
+                                <div class="soc-nets">
+                                    <ul>
+                                        @foreach (var item in ViewBag.Socials)
+                                        {
+                                            <li><a href="@item.Link"><i class="@item.IconClass"></i></a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class="footer-menu">
+                                <h5> Useful Links</h5>
+                                <ul>
+                                    <li><a href="@Url.Action("Index","About")">About Us</a></li>
+                                    <li><a href="@Url.Action("Index","Contact")">Location</a></li>
+                                    <li><a href="@Url.Action("Index","Contact")">Contact</a></li>
+                                    <li><a href="@Url.Action("Index","Faq")">Faq</a></li>
+                                    <li><a href="@Url.Action("Index","Terms")">Terms and Conditions</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class="footer-menu">
+                                <h5> Category</h5>
+                                <ul>
+                                    @foreach (var item in db.Category.Take(5))
+                                    {
+                                        <li><a href="@Url.Action("Category","Product",new { id=item.Id})">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6">
+                            <div class="footer-menu">
+                                <h5>account</h5>
+                                <ul>
+                                    <li><a href="@Url.Action("Index","User")">my account</a></li>
+                                    <li>@*<a href="@Url.Action("Orders","User",new FinalProject.ViewModels.VmUser{userId=(int)Session["LoginerId"]} )">Order List</a>*@</li>
+                                    <li><a href="@Url.Action("RecentlyView","User")">Recently view</a></li>
+                                    <li><a href="@Url.Action("Login","User")">Login</a></li>
+                                    <li><a href="@Url.Action("Register","User")">Register</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="contact-info">
+                                <h5>Contact info</h5>
+                                <ul>
+                                    <li>
+                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                        <span>
+                                            @(ViewBag.Contact.Address!=null? ViewBag.Contact.Address:"")
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            <i class="far fa-envelope"></i>
+                                        </span><span>@(ViewBag.Contact.Email!=null? ViewBag.Contact.Email:"")</span>
+                                    </li>
+                                    <li>
+                                        <span><i class="fas fa-phone"></i></span>
+                                        <span>@(ViewBag.Contact.Phone!=null? ViewBag.Contact.Phone:"")</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="copyright">
+                                <p>Copyright @(ViewBag.Setting.Copyright!=null? ViewBag.Setting.Copyright:"") . All rights reserved</p>
+                            </div>
+                        </div>
+                        @*<div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="pay-type">
+                                    <ul>
+                                        <li><img src="~/Public/img/visa-3.webp"></li>
+                                        <li><img src="~/Public/img/paypal-3.webp"></li>
+                                        <li><img src="~/Public/img/discover-3.webp"></li>
+                                        <li><img src="~/Public/img/master_card-3.webp"></li>
+                                        <li><img src="~/Public/img/amarican_express-3.webp"></li>
+                                    </ul>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/25a8a55cf9.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Public/js/main.js"></script>
+</body>
+
+</html>

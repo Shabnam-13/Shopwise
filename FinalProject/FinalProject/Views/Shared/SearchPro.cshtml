@@ -1,0 +1,16 @@
+﻿@model FinalProject.ViewModels.VmSearch
+    <form style="width:50%">
+        @using (Html.BeginForm("SearchBlog", "Search", FormMethod.Post))
+        {
+        <div style="width:100%" class="search-form">
+            @Html.EditorFor(model => model.SearchText, new { htmlAttributes = new { @placeholder = "Search..." } })
+            <div class="search-icon">
+                <button type="submit" style="background-color:unset;border:unset;color:white;">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+                <input type="hidden" name="Page" value="@Model.Page" />
+            </div>
+        </div>
+        }
+    </form>
+

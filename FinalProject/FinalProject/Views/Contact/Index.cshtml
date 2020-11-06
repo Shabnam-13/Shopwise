@@ -1,0 +1,99 @@
+﻿@model FinalProject.ViewModels.VmSite
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="contactPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+
+        <!-- Contact Area Start -->
+        <section id="contactUs">
+            <div class="container">
+                <!-- Session Area Start -->
+                <div class="row">
+                    <div class="col-12">
+                        @if (Session["SuccessfullSubscribe"] != null)
+                        {
+                            Session["SuccessfullSubscribe"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-success">
+                            Thank you!
+                        </div>
+                        }
+                        @if (Session["SameEmail"] != null)
+                        {
+                            Session["SameEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                This email already exists!
+                            </div>
+                        }
+                        @if (Session["EmptyEmail"] != null)
+                        {
+                            Session["EmptyEmail"] = null;
+                            <div style="margin-top:1rem;" class="alert alert-danger">
+                                Please enter your e-mail address
+                            </div>
+                        }
+                        @if (Session["Successfull"] != null)
+                        {
+                            Session["Successfull"] = null;
+                            <div class="alert alert-success">
+                                Message send successfully!
+                            </div>
+                        }
+                        @if (Session["EmptySubject"] != null)
+                        {
+                            Session["EmptySubject"] = null;
+                            <div class="alert alert-danger">
+                                Please enter your message
+                            </div>
+                        }
+                        @if (Session["EmptyEmailMsg"] != null)
+                        {
+                            Session["EmptyEmailMsg"] = null;
+                            <div class="alert alert-danger">
+                                Please enter your message
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- Session Area End -->
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="message-form">
+                            <div class="title">
+                                <h2>get in touch</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.
+                                </p>
+                            </div>
+                            <!-- Message  Area Start -->
+                            @{
+                                Html.RenderPartial("~/Views/Shared/Message.cshtml", new FinalProject.ViewModels.VmMessage { });
+                            }
+                            <!-- Message  Area End -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="googleMap">
+                            <iframe src="@(Model.contact.IframeLink!=null?Model.contact.IframeLink:"")" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "Contact" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>
+
+

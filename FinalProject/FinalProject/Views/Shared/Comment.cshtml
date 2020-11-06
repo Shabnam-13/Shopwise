@@ -1,0 +1,30 @@
+﻿@model FinalProject.ViewModels.VmComment
+
+<div class="leave-reply">
+    <div class="comment-form">
+        <div class="title">
+            <h5>Leave a Reply </h5>
+            @if (Model.isReply == true)
+            {
+                <a href="@Url.Action("Details","Blogs",new {id=Model.ItemId,isReply=false})"> Cansel Reply</a>
+            }
+            <p>Your email address will not be published. Required fields are marked *</p>
+        </div>
+        <form action="@Url.Action("Comments","Blogs", new {isReply=Model.isReply })" method="post">
+
+            @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @style = "height: 150px;", @placeholder = "Comment*" } })
+
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name*" } })
+
+            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", @placeholder = "Surname*" } })
+
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "Email", @placeholder = "Email*" } })
+            <button class="btn-pink" type="submit">post comment</button>
+            <input type="hidden" name="itemId" value="@Model.ItemId" />
+            @if (Model.isReply == true && Model.CommentId != null)
+            {
+                <input type="hidden" name="CommentId" value="@Model.CommentId" />
+            }
+        </form>
+    </div>
+</div>

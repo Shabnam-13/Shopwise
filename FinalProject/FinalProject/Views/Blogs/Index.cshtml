@@ -1,0 +1,106 @@
+﻿@model FinalProject.ViewModels.VmBlog
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="blogPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        <!-- Session Area Start -->
+        <div class=" container">
+            <div class="row">
+                <div class="col-12">
+                    @if (Session["SuccessfullSubscribe"] != null)
+                    {
+                        Session["SuccessfullSubscribe"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-success">
+                        Thank you!
+                    </div>
+                    }
+                    @if (Session["SameEmail"] != null)
+                    {
+                        Session["SameEmail"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-danger">
+                            This email already exists!
+                        </div>
+                    }
+                    @if (Session["EmptyEmail"] != null)
+                    {
+                        Session["EmptyEmail"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-danger">
+                            Please enter your e-mail address
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <!-- Session Area End -->
+        <!-- Blog Area Start -->
+        <section id="blogArea">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-11">
+                        @if (Model.Blogs != null)
+                        {
+                            foreach (var item in Model.Blogs)
+                            {
+                                <div class="mainBlog">
+                                    <div class="card w-100">
+                                        <div class="post-img">
+                                            <a href="@Url.Action("Details","Blogs",new { id=item.Id,isReply=false})">
+                                                <img src="~/Uploads/Blog/@item.Images.FirstOrDefault().Name" alt="@item.Images.FirstOrDefault().Name" />
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h1> <a href="@Url.Action("Details","Blogs",new { id=item.Id})">@item.Title</a></h1>
+                                            <ul>
+                                                <li>
+                                                    <span><i class="far fa-calendar"></i></span>
+                                                    <span>@item.CreateDate.ToString("MMMM dd, yyyy")</span>
+                                                </li>
+                                                <li>
+                                                    <span><i class="far fa-folder"></i></span>
+                                                    <span>@item.Category.Name</span>
+                                                </li>
+                                                <li>
+                                                    <span><i class="fas fa-tag"></i></span>
+                                                    @foreach (var tag in item.Tags)
+                                                    {
+                                                        <span>
+                                                            @tag.blogTags.Name
+                                                        </span>
+                                                    }
+                                                </li>
+                                            </ul>
+
+                                            <p>
+                                                @(item.Content.Length>250?Html.Raw(item.Content.Substring(0, 250)):Html.Raw(item.Content))
+                                            </p>
+                                            <a class="btn-pink" href="@Url.Action("Details","Blogs",new { id=item.Id})">read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <!-- Sidebar Area Start -->
+                    @{
+                        Html.RenderPartial("~/Views/Shared/Sidebar.cshtml", Model);
+                    }
+                    <!-- Sidebar Area End -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "Blog" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>

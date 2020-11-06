@@ -1,0 +1,160 @@
+﻿@model FinalProject.ViewModels.VmProduct
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<string> wishlist = ViewBag.Wishlist;
+    List<string> cart = ViewBag.Cart;
+}
+
+    <div id="shopPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area End -->
+        <!-- Session Area Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @if (Session["SuccessfullSubscribe"] != null)
+                    {
+                        Session["SuccessfullSubscribe"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-success">
+                        Thank you!
+                    </div>
+                    }
+                    @if (Session["SameEmail"] != null)
+                    {
+                        Session["SameEmail"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-danger">
+                            This email already exists!
+                        </div>
+                    }
+                    @if (Session["EmptyEmail"] != null)
+                    {
+                        Session["EmptyEmail"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-danger">
+                            Please enter your e-mail address
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <!-- Session Area End -->
+        <!-- Product Area Start -->
+        <section id="shop">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="title">
+                            <h2>
+                                @(Model.category.Name!=null? Model.category.Name:"")
+                            </h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos magni atque commodi.
+                                Assumenda neque facere explicabo iure, veniam earum modi nesciunt accusamus! Atque,
+                                eveniet iusto omnis explicabo veniam voluptates incidunt?
+                            </p>
+                        </div>
+                    </div>
+                    @foreach (var item in Model.subcategories)
+                    {
+                        <div class="col-lg-2 col-md-3 col-4">
+                            <div class="category">
+                                <div class="img">
+                                    <a href="@Url.Action("Subcategory","Product",new { id=item.Id})">
+                                        <img src="~/Uploads/Category/@item.Image" alt="alternate text">
+                                    </a>
+                                </div>
+                                <a href="@Url.Action("Subcategory","Product",new { id=item.Id})">@item.Name</a>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="title">
+                            <h2>All Products</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse tempore deserunt qui
+                                sed voluptate excepturi eligendi saepe. Dolorum rem excepturi, aliquam laboriosam
+                                quas veniam corporis voluptatibus hic aperiam qui blanditiis!
+                            </p>
+                        </div>
+                    </div>
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <div class="single-product">
+                                <div class="sale-area">
+                                    @if (item.productInfos.FirstOrDefault().SalePercent != null)
+                                    {
+                                        if (item.productInfos.FirstOrDefault().SaleBanner.StartDate < DateTime.Now && item.productInfos.FirstOrDefault().SaleBanner.EndDate > DateTime.Now)
+                                        {
+                                            <span>-@Convert.ToDecimal(item.productInfos.FirstOrDefault().SalePercent).ToString("#.00") %</span>
+                                        }
+                                    }
+                                </div>
+                                <div class="wishlist">
+                                    <a class="addToWishlist @(wishlist!=null?(wishlist.Contains(item.productInfos.FirstOrDefault().Id.ToString()) == true ? "acttive-wishlist":""):"")" data-id="@item.productInfos.FirstOrDefault().Id" href="#">
+                                        <i class="fas fa-heart"></i>
+                                    </a>
+                                </div>
+                                <div class="product-img">
+                                    <a href="@Url.Action("Details","Product",new { id=item.Id})">
+                                        <img class="w-100" src="~/Uploads/Product/@item.productInfos.FirstOrDefault().Images.FirstOrDefault().Name">
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h6 style="text-transform:capitalize;">
+                                        <a href="@Url.Action("Details","Product",new { id=item.Id})">@item.Name</a>
+                                    </h6>
+                                    <h6>
+                                        @if (item.productInfos.FirstOrDefault().SalePercent != null)
+                                        {
+                                            if (item.productInfos.FirstOrDefault().SaleBanner.StartDate < DateTime.Now && item.productInfos.FirstOrDefault().SaleBanner.EndDate > DateTime.Now)
+                                            {
+                                                <del><span class="ex-parice">$@item.productInfos.FirstOrDefault().Price.ToString("#.00")</span></del>
+                                                <span class="price">$@(Convert.ToDecimal(item.productInfos.FirstOrDefault().Price - ((item.productInfos.FirstOrDefault().Price * item.productInfos.FirstOrDefault().SalePercent) / 100)).ToString("#.00"))</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="price">$@item.productInfos.FirstOrDefault().Price.ToString("#.00")</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span class="price">$@item.productInfos.FirstOrDefault().Price.ToString("#.00")</span>
+                                        }
+                                    </h6>
+                                    @*<div class="rating">
+                            <div class="rating-bar">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>(@(item.Reviews!=null?item.Reviews.Count:0))</span>
+                        </div>*@
+                                    <div class="addCart">
+                                        <a class="btn-pink" href="@Url.Action("Details","Product",new { id=item.Id})">View Product</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </section>
+        <!-- Product Area End -->
+        <!-- Subscribe  Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "ProCat" });
+        }
+        <!-- Subscribe  Area End -->
+    </div>

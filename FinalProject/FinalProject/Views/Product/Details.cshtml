@@ -1,0 +1,473 @@
+﻿@model FinalProject.ViewModels.VmProduct
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<string> wishlist = ViewBag.Wishlist;
+    List<string> cart = ViewBag.Cart;
+}
+
+    <div id="productPage">
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/Intro.cshtml");
+        }
+        <!-- Intro Area Start -->
+        <!-- Session Area Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @if (Session["SuccessfullSubscribe"] != null)
+                    {
+                        Session["SuccessfullSubscribe"] = null;
+                    <div style="margin-top:1rem;" class="alert alert-success">
+                        Thank you!
+                    </div>
+                    }
+                    @if (Session["SameEmail"] != null)
+                    {
+                        Session["SameEmail"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-danger">
+                            This email already exists!
+                        </div>
+                    }
+                    @if (Session["EmptyEmail"] != null)
+                    {
+                        Session["EmptyEmail"] = null;
+                        <div style="margin-top:1rem;" class="alert alert-danger">
+                            Please enter your e-mail address
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- Session Area End -->
+        <!-- Product Area Start -->
+        <section id="productDetailsArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="product-img">
+                            <div class="single-img">
+                                <a href="#">
+                                    <img class="w-100" src="~/Uploads/Product/@(Model.productInfo.Images.FirstOrDefault().Name!=null?Model.productInfo.Images.FirstOrDefault().Name:"")">
+                                </a>
+                            </div>
+                            <div class="img-gallery">
+                                <ul>
+                                    <div class="owl-carousel owl-theme">
+                                        @foreach (var item in Model.productInfo.Images)
+                                        {
+                                            <li>
+                                                <a href="#"><img src="~/Uploads/Product/@item.Name"></a>
+                                            </li>
+                                        }
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="product-info">
+                            <div class="header-section">
+                                <div class="header-top">
+                                    <div class="title">
+                                        <h4>@(Model.product.Name!=null? Model.product.Name:"")</h4>
+                                    </div>
+                                    @*<div class="shopping-list">
+                                        <a class="addToWishlist @(wishlist.Contains(Model.productInfo.Id.ToString()) == true ? "acttive-wishlist":"")" data-id="@Model.productInfo.Id" href="#">
+                                        <i class="fas fa-heart"></i>
+                                        </a>
+                                    </div>*@
+                                </div>
+                                <div class="header-bottom">
+                                    <div class="price-area">
+                                        <h3>
+                                            @if (Model.productInfo.SalePercent != null)
+                                            {
+                                                if (Model.productInfo.SaleBanner.StartDate < DateTime.Now && Model.productInfo.SaleBanner.EndDate > DateTime.Now)
+                                                {
+                                                    <del><span class="ex-price">$@Model.productInfo.Price.ToString("#.00")</span></del>
+                                                    <span class="price">$@(Convert.ToDecimal(Model.productInfo.Price - ((Model.productInfo.Price * Model.productInfo.SalePercent) / 100)).ToString("#.00"))</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="price">$@Model.productInfo.Price.ToString("#.00")</span>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <span class="price">$@Model.productInfo.Price.ToString("#.00")</span>
+                                            }
+
+                                        </h3>
+                                    </div>
+                                    @*<div class="rating-area">
+                                        <div class="rating-bar">
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <a href="#">
+                                            <span>(@(Model.product.Reviews!=null?Model.product.Reviews.Count:0) customer review)</span>
+                                        </a>
+                                    </div>*@
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <p>
+                                    @(Model.product.SmallDesc!=null? Model.product.SmallDesc:"")
+                                </p>
+
+                                <div class="warranty">
+                                    <ul>
+                                        <li>
+                                            <span><i class="far fa-check-circle"></i></span>
+                                            <span>1 Year AL Jazeera Brand Warranty</span>
+                                        </li>
+                                        <li>
+                                            <span><i class="far fa-check-circle"></i></span>
+                                            <span>30 Day Return Policy</span>
+                                        </li>
+                                        <li>
+                                            <span><i class="far fa-check-circle"></i></span>
+                                            <span>Cash on Delivery available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product-details">
+                                    <div class="product-color">
+                                        <h5>color</h5>
+                                        <p>@(Model.productInfo.Color.Name!=null? Model.productInfo.Color.Name:"")</p>
+                                        <ul>
+                                            @if (Model.Colors != null)
+                                            {
+                                                foreach (var color in Model.Colors)
+                                                {
+                                                    if (color.Id != Model.productInfo.ColorId)
+                                                    {
+                                                        <li>
+                                                            <a href="@Url.Action("Details","Product",new {id=Model.ProductInfos.FirstOrDefault(c=>c.ColorId==color.Id).Id })">
+                                                                <img src="~/Uploads/Product/@Model.ProductInfos.FirstOrDefault(p=>p.ColorId==color.Id).Images.FirstOrDefault().Name"
+                                                                     alt="">
+                                                                <span>@color.Name</span>
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                }
+                                            }
+
+                                        </ul>
+                                    </div>
+                                    <div class="product-size">
+                                        <h5>size</h5>
+                                        <p>@(Model.productInfo.Size.Name!=null? Model.productInfo.Size.Name:"")</p>
+                                        <ul>
+                                            @if (Model.Sizes != null)
+                                            {
+                                                foreach (var size in Model.Sizes)
+                                                {
+                                                    if (size.Id != Model.productInfo.SizeId)
+                                                    {
+                                                        <li>
+                                                            <a href="@Url.Action("Details","Product",new {id=Model.ProductInfos.FirstOrDefault(s=>s.SizeId==size.Id).Id })">
+                                                                <span>@size.Name</span>
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btns">
+                                <div class="quantity">
+                                    <input class="productCount" type="number" value="1" min="1" max="1000">
+                                </div>
+                                <a style="width:unset;text-decoration:none; padding:10px 12px;" class="btn-pink addToCart" data-id="@Model.productInfo.Id" href="">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="additional-informations">
+                            <div class="product-nav">
+                                <ul>
+                                    <li data-index="1" class="active">
+                                        <a href="#">Description</a>
+                                    </li>
+                                    <li data-index="2">
+                                        <a href="#">product size</a>
+                                    </li>
+                                    @*<li data-index="3">
+                                        <a href="#">reviews</a>
+                                    </li>*@
+                                </ul>
+                            </div>
+                            <div class="nav-content">
+                                <div class="myActive description" data-index="1">
+                                    <p>@(Model.product.megaDesc!=null? Model.product.megaDesc:"")</p>
+                                </div>
+                                <div class="product-size" data-index="2">
+                                    @if (Model.sizeOptions != null)
+                                    {
+                                        foreach (var opt in Model.sizeOptions)
+                                        {
+                                            <p style="color:#292b2c">
+                                                <span style="font-weight:bolder">@opt.Key:</span>
+                                                <span>@opt.Value</span>
+                                            </p>
+                                        }
+                                    }
+                                </div>
+                                @*<div class="reviews" data-index="3">
+                                    <div class="title">
+                                        <h5>1 review for Itaque Earum Rerum</h5>
+                                    </div>
+                                    <div class="user-reviews">
+                                        <div class="review-area">
+                                            <div class="user-img">
+                                                <img src="img/user1.jpg">
+                                            </div>
+                                            <div class="content">
+                                                <div class="user-info">
+                                                    <div class="user-name">
+                                                        <h6>Admin</h6>
+                                                    </div>
+                                                    <div class="sidebar">
+                                                        <div class="rating">
+                                                            <i class="far fa-star"></i>
+                                                            <i class="far fa-star"></i>
+                                                            <i class="far fa-star"></i>
+                                                            <i class="far fa-star"></i>
+                                                            <i class="far fa-star"></i>
+                                                        </div>
+                                                        <div class="comment-date">
+                                                            <p>April 19, 2020</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="user-comment">
+                                                    <p>
+                                                        It is a long established fact that a reader will be
+                                                        distracted by
+                                                        the readable content of a page when looking at its layout.
+                                                        The
+                                                        point of using Lorem Ipsum is that it has a more-or-less
+                                                        normal
+                                                        distribution of letters
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="add-review">
+                                            <div class="title">
+                                                <h5>Add a review</h5>
+                                                <p>
+                                                    Your email address will not be published. Required fields are
+                                                    marked
+                                                    *
+                                                </p>
+                                            </div>
+                                            <div class="rating-form">
+                                                <form action="@Url.Action("Review","Product")" method="post">
+                                                    <div class="your-rating">
+                                                        <p>Your rating</p>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="far fa-star"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>your review*</label>
+                                                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>name*</label>
+                                                        <input type="text">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>email*</label>
+                                                        <input type="email">
+                                                    </div>
+                                                    <button type="submit" class="btn-pink">submit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Product Area End -->
+        <!-- Related Product Area Start -->
+        <section id="relatedProducts">
+            <div id="products">
+                <div class="container">
+                    <div class="title">
+                        <h3>All products</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="owl-carousel owl-theme">
+                                @foreach (var item in Model.Products)
+                                {
+                                    <div class="single-product">
+                                        <div class="sale-area">
+                                            @if (item.productInfos.FirstOrDefault().SalePercent != null)
+                                            {
+                                                if (item.productInfos.FirstOrDefault().SaleBanner.StartDate < DateTime.Now && item.productInfos.FirstOrDefault().SaleBanner.EndDate > DateTime.Now)
+                                                {
+                                                    <span>-@Convert.ToDecimal(item.productInfos.FirstOrDefault().SalePercent).ToString("#.00") %</span>
+                                                }
+                                            }
+                                        </div>
+                                        <div class="wishlist">
+                                            <a class="addToWishlist @(wishlist!=null?(wishlist.Contains(item.productInfos.FirstOrDefault().Id.ToString()) == true ? "acttive-wishlist":""):"")" data-id="@item.productInfos.FirstOrDefault().Id" href="#">
+                                                <i class="fas fa-heart"></i>
+                                            </a>
+                                        </div>
+                                        <div class="product-img">
+                                            <a href="@Url.Action("Details","Product",new { id=item.Id})">
+                                                <img class="w-100" src="~/Uploads/Product/@item.productInfos.FirstOrDefault().Images.FirstOrDefault().Name">
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <h6 style="text-transform:capitalize;">
+                                                <a href="@Url.Action("Details","Product",new { id=item.Id})">@item.Name</a>
+                                            </h6>
+                                            <h6>
+                                                @if (item.productInfos.FirstOrDefault().SalePercent != null)
+                                                {
+                                                    if (item.productInfos.FirstOrDefault().SaleBanner.StartDate < DateTime.Now && item.productInfos.FirstOrDefault().SaleBanner.EndDate > DateTime.Now)
+                                                    {
+                                                        <del><span class="ex-parice">$@item.productInfos.FirstOrDefault().Price.ToString("#.00")</span></del>
+                                                        <span class="price">$@(Convert.ToDecimal(item.productInfos.FirstOrDefault().Price - ((item.productInfos.FirstOrDefault().Price * item.productInfos.FirstOrDefault().SalePercent) / 100)).ToString("#.00"))</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="price">$@item.productInfos.FirstOrDefault().Price.ToString("#.00")</span>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span class="price">$@item.productInfos.FirstOrDefault().Price.ToString("#.00")</span>
+                                                }
+                                            </h6>
+                                            @*<div class="rating">
+                        <div class="rating-bar">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span>(@(item.Reviews!=null?item.Reviews.Count:0))</span>
+                    </div>*@
+                                            <div class="addCart">
+                                                <a class="btn-pink" href="@Url.Action("Details","Product",new { id=item.Id})">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Related Product Area End -->
+        <!-- Recently View Area Start -->
+        <section id="recentlyViewArea">
+            <div class="container">
+                <div class="title">
+                    <h3>Your Recenty view</h3>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="owl-carousel owl-theme">
+                            @foreach (var item in Model.SeenPro)
+                            {
+                                <div class="product-img">
+                                    <a href="@Url.Action("Details","Product",new {id=item.Id })">
+                                        <img src="~/Uploads/Product/@item.productInfos.FirstOrDefault().Images.FirstOrDefault().Name" alt="">
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Recently View Area End -->
+        <!-- Popup Image Area Start -->
+        <div id="popup-img">
+            <div class="img-wrapper">
+                <div class="images">
+                    @foreach (var img in Model.productInfo.Images)
+                    {
+                        <img class="active" src="~/Uploads/Product/@img.Name">
+                    }
+                </div>
+                <div class="closeBtn">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="arrows">
+                <a class="img-prev" href="#">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <a class="img-next" href="#">
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- Popup View Area End -->
+        <!-- Intro Area Start -->
+        @{
+            Html.RenderPartial("~/Views/Shared/_Subscribe.cshtml", new FinalProject.ViewModels.VmSubscribe { Page = "ProductDetails", ItemId = Model.product.Id });
+        }
+        <!-- Intro Area Start -->
+    </div>
+

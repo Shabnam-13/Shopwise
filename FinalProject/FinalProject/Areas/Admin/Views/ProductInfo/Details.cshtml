@@ -1,0 +1,122 @@
+﻿@model FinalProject.Models.ProductInfo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Color 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color.Name)
+        </dd>
+
+        <dt>
+            Product
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+
+        <dt>
+            Sale Banner Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaleBanner.Name)
+        </dd>
+
+        <dt>
+            Size
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            Sale Percent
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalePercent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isNew)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isNew)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isTopSelling)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isTopSelling)
+        </dd>
+
+        <dt>
+            Size option
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.sizeOptions)
+            {
+                <span>@item.Key: @item.Value</span>
+
+            }
+        </dd>
+
+        <dt>
+            Images
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Images)
+            {
+                <img src="~/Uploads/Product/@item.Name" alt="Alternate Text" width="100" />
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
